@@ -1,8 +1,9 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { SiteInfo, defaultSiteInfo, defaultBannerSlides } from "@/types/site-info";
+import { Category } from "@/types/category";
 import {
   Trees,
   Armchair,
@@ -10,6 +11,14 @@ import {
   Boxes,
   FileCheck2,
   Castle,
+  Sparkles,
+  Folder,
+  Puzzle,
+  Shapes,
+  Heart,
+  Star,
+  Tag,
+  Grid,
   ChevronLeft,
   ChevronRight,
   Truck,
@@ -19,45 +28,72 @@ import {
   Search,
 } from "lucide-react";
 
-const categories = [
-  { name: "Đồ chơi ngoài trời", icon: Trees, href: "/do-choi-ngoai-troi", bg: "bg-red-50 text-[#c8102e]" },
-  { name: "Nội thất mầm non", icon: Armchair, href: "/noi-that-mam-non", bg: "bg-orange-50 text-orange-600" },
-  { name: "Đồ chơi nhập khẩu", icon: Ship, href: "/do-choi-nhap-khau", bg: "bg-blue-50 text-blue-600" },
-  { name: "Đồ chơi gỗ", icon: Boxes, href: "/do-choi-go", bg: "bg-amber-50 text-amber-700" },
-  { name: "Đồ chơi theo thông tư 02", icon: FileCheck2, href: "/do-choi-thong-tu-02", bg: "bg-emerald-50 text-emerald-600" },
-  { name: "Đồ chơi khu vui chơi trong nhà", icon: Castle, href: "/do-choi-khu-vui-choi", bg: "bg-purple-50 text-purple-600" },
+const ICON_MAP: Record<string, React.ElementType> = {
+  Trees,
+  Armchair,
+  Ship,
+  Boxes,
+  FileCheck2,
+  Castle,
+  Sparkles,
+  Folder,
+  Puzzle,
+  Shapes,
+  Heart,
+  Star,
+  Tag,
+  Grid,
+};
+
+const defaultCategories = [
+  { name: "Đồ chơi ngoài trời", icon: "Trees", href: "/danh-muc/do-choi-ngoai-troi", color: "bg-red-50 text-[#c8102e]" },
+  { name: "Nội thất mầm non", icon: "Armchair", href: "/danh-muc/noi-that-mam-non", color: "bg-orange-50 text-orange-600" },
+  { name: "Đồ chơi nhập khẩu", icon: "Ship", href: "/danh-muc/do-choi-nhap-khau", color: "bg-blue-50 text-blue-600" },
+  { name: "Đồ chơi gỗ", icon: "Boxes", href: "/danh-muc/do-choi-go", color: "bg-amber-50 text-amber-700" },
+  { name: "Đồ chơi theo thông tư 02", icon: "FileCheck2", href: "/danh-muc/do-choi-thong-tu-02", color: "bg-emerald-50 text-emerald-600" },
+  { name: "Đồ chơi khu vui chơi trong nhà", icon: "Castle", href: "/danh-muc/do-choi-khu-vui-choi", color: "bg-purple-50 text-purple-600" },
 ];
 
-const bannerSlides = [
-  {
-    title: "THIẾT BỊ & ĐỒ CHƠI MẦM NON CAO CẤP",
-    subtitle: "Chất lượng vượt trội - An toàn tuyệt đối cho trẻ em",
-    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    title: "SẢN XUẤT TRỰC TIẾP TẠI XƯỞNG TRUNG TÍN",
-    subtitle: "Đạt chuẩn Bộ Giáo Dục & Đào Tạo - Giá tận gốc",
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    title: "THI CÔNG KHU VUI CHƠI TRỌN GÓI TOÀN QUỐC",
-    subtitle: "Tư vấn thiết kế 3D miễn phí & Bảo hành lâu dài",
-    image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1200&auto=format&fit=crop",
-  },
-];
+interface HeroProps {
+  siteInfo?: SiteInfo;
+  categories?: Category[];
+}
 
-export default function Hero() {
+export default function Hero({ siteInfo = defaultSiteInfo, categories }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
 
+  // Filter root categories if categories prop provided
+  const rootCats = categories
+    ? categories
+        .filter((c) => !c.parentId)
+        .sort((a, b) => (a.displayOrder || 99) - (b.displayOrder || 99))
+    : [];
+
+  const displayCategories = rootCats.length > 0
+    ? rootCats.map((c) => ({
+        name: c.name,
+        icon: c.icon || "Folder",
+        href: c.slug.startsWith("/") ? c.slug : `/danh-muc/${c.slug}`,
+        color: c.color || "bg-red-50 text-[#c8102e]",
+      }))
+    : defaultCategories;
+
+  const slides = (siteInfo.bannerSlides && siteInfo.bannerSlides.length > 0)
+    ? siteInfo.bannerSlides
+    : defaultBannerSlides;
+
   useEffect(() => {
+    if (slides.length <= 1) return;
     const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % bannerSlides.length);
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [slides.length]);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % bannerSlides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + bannerSlides.length) % bannerSlides.length);
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+
+  const activeSlide = slides[currentSlide] || slides[0];
 
   return (
     <section className="w-full bg-gray-50 py-4">
@@ -66,15 +102,15 @@ export default function Hero() {
           {/* Vertical Category Sidebar */}
           <aside className="w-full md:w-64 bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden shrink-0">
             <div className="divide-y divide-gray-100">
-              {categories.map((cat, idx) => {
-                const IconComponent = cat.icon;
+              {displayCategories.map((cat, idx) => {
+                const IconComponent = ICON_MAP[cat.icon] || Folder;
                 return (
                   <Link
                     key={idx}
                     href={cat.href}
                     className="flex items-center gap-3 p-3.5 hover:bg-red-50/50 hover:pl-5 transition-all text-gray-700 font-semibold text-xs md:text-sm group"
                   >
-                    <div className={`w-8 h-8 rounded-full ${cat.bg} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
+                    <div className={`w-8 h-8 rounded-full ${cat.color} flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform`}>
                       <IconComponent className="w-4 h-4" />
                     </div>
                     <span className="group-hover:text-[#c8102e] transition-colors">
@@ -91,8 +127,8 @@ export default function Hero() {
             {/* Slide Background Image */}
             <div className="absolute inset-0 z-0">
               <img
-                src={bannerSlides[currentSlide].image}
-                alt={bannerSlides[currentSlide].title}
+                src={activeSlide.image}
+                alt={activeSlide.title}
                 className="w-full h-full object-cover opacity-60 transition-opacity duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
@@ -106,7 +142,7 @@ export default function Hero() {
               <div className="max-w-md mx-auto relative">
                 <input
                   type="text"
-                  placeholder="Đồ chơi Trung Tín có tất cả..."
+                  placeholder={`Đồ chơi ${siteInfo.siteName || "Trung Tín"} có tất cả...`}
                   className="w-full py-2.5 px-4 pr-10 rounded-full bg-white/90 backdrop-blur text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c8102e] shadow-lg"
                 />
                 <button className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-[#c8102e] text-white rounded-full flex items-center justify-center hover:bg-[#a00c24]">
@@ -121,42 +157,45 @@ export default function Hero() {
                 Khuyến Mại Đặc Biệt
               </span>
               <h3 className="text-2xl md:text-4xl font-extrabold text-white leading-tight drop-shadow-lg mb-2">
-                {bannerSlides[currentSlide].title}
+                {activeSlide.title}
               </h3>
               <p className="text-sm md:text-base text-gray-200 font-medium drop-shadow">
-                {bannerSlides[currentSlide].subtitle}
+                {activeSlide.subtitle}
               </p>
             </div>
 
             {/* Banner Controls & Indicators */}
-            <div className="relative z-10 flex items-center justify-between">
-              <button
-                onClick={prevSlide}
-                className="w-10 h-10 rounded-full bg-black/40 hover:bg-[#c8102e] text-white flex items-center justify-center backdrop-blur transition-colors"
-                aria-label="Previous Slide"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
+            {slides.length > 1 && (
+              <div className="relative z-10 flex items-center justify-between">
+                <button
+                  onClick={prevSlide}
+                  className="w-10 h-10 rounded-full bg-black/40 hover:bg-[#c8102e] text-white flex items-center justify-center backdrop-blur transition-colors"
+                  aria-label="Previous Slide"
+                >
+                  <ChevronLeft className="w-6 h-6" />
+                </button>
 
-              <div className="flex items-center gap-2">
-                {bannerSlides.map((_, idx) => (
-                  <button
-                    key={idx}
-                    onClick={() => setCurrentSlide(idx)}
-                    className={`w-3 h-3 rounded-full transition-all ${currentSlide === idx ? "bg-[#c8102e] w-8" : "bg-white/60 hover:bg-white"
+                <div className="flex items-center gap-2">
+                  {slides.map((_, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => setCurrentSlide(idx)}
+                      className={`w-3 h-3 rounded-full transition-all ${
+                        currentSlide === idx ? "bg-[#c8102e] w-8" : "bg-white/60 hover:bg-white"
                       }`}
-                  />
-                ))}
-              </div>
+                    />
+                  ))}
+                </div>
 
-              <button
-                onClick={nextSlide}
-                className="w-10 h-10 rounded-full bg-black/40 hover:bg-[#c8102e] text-white flex items-center justify-center backdrop-blur transition-colors"
-                aria-label="Next Slide"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
+                <button
+                  onClick={nextSlide}
+                  className="w-10 h-10 rounded-full bg-black/40 hover:bg-[#c8102e] text-white flex items-center justify-center backdrop-blur transition-colors"
+                  aria-label="Next Slide"
+                >
+                  <ChevronRight className="w-6 h-6" />
+                </button>
+              </div>
+            )}
           </div>
         </div>
 

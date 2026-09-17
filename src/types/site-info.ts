@@ -1,3 +1,11 @@
+export interface BannerSlide {
+  id: string;
+  title: string;
+  subtitle: string;
+  image: string;
+  link?: string;
+}
+
 export interface SiteInfo {
   siteName: string;
   siteSubName: string;
@@ -14,7 +22,31 @@ export interface SiteInfo {
   pinterestUrl: string;
   mst: string;
   copyrightText: string;
+  faviconUrl?: string;
+  ogImageUrl?: string;
+  bannerSlides?: BannerSlide[];
 }
+
+export const defaultBannerSlides: BannerSlide[] = [
+  {
+    id: "slide-1",
+    title: "THIẾT BỊ & ĐỒ CHƠI MẦM NON CAO CẤP",
+    subtitle: "Chất lượng vượt trội - An toàn tuyệt đối cho trẻ em",
+    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    id: "slide-2",
+    title: "SẢN XUẤT TRỰC TIẾP TẠI XƯỞNG TRUNG TÍN",
+    subtitle: "Đạt chuẩn Bộ Giáo Dục & Đào Tạo - Giá tận gốc",
+    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1200&auto=format&fit=crop",
+  },
+  {
+    id: "slide-3",
+    title: "THI CÔNG KHU VUI CHƠI TRỌN GÓI TOÀN QUỐC",
+    subtitle: "Tư vấn thiết kế 3D miễn phí & Bảo hành lâu dài",
+    image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1200&auto=format&fit=crop",
+  },
+];
 
 export const defaultSiteInfo: SiteInfo = {
   siteName: "TRUNG TÍN",
@@ -32,4 +64,7 @@ export const defaultSiteInfo: SiteInfo = {
   pinterestUrl: "https://pinterest.com",
   mst: "0110515643",
   copyrightText: "Copyright 2026 © CÔNG TY TNHH THƯƠNG MẠI & SẢN XUẤT TRUNG TÍN - MST: 0110515643 - DO SỞ KHĐT TP. HÀ NỘI CẤP NGÀY 20/01/2026.",
+  faviconUrl: "/favicon.ico",
+  ogImageUrl: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
+  bannerSlides: defaultBannerSlides,
 };

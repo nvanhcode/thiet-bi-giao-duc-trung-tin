@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { SiteInfo, defaultSiteInfo } from "@/types/site-info";
+import { Category } from "@/types/category";
 import {
   Search,
   PhoneCall,
@@ -10,15 +11,25 @@ import {
   ShoppingBag,
   Menu,
   ChevronDown,
+  ChevronRight,
   UserCog,
 } from "lucide-react";
 
 interface HeaderProps {
   siteInfo?: SiteInfo;
+  categories?: Category[];
 }
 
-export default function Header({ siteInfo = defaultSiteInfo }: HeaderProps) {
-  const [isCategoryOpen, setIsCategoryOpen] = useState(true);
+export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: HeaderProps) {
+  const [isCategoryOpen, setIsCategoryOpen] = useState(false);
+  const [activeParentId, setActiveParentId] = useState<string | null>(null);
+
+  // Group categories into parents & children
+  const rootCategories = categories.filter((c) => !c.parentId);
+  
+  // Set default active parent on hover/open
+  const activeParent = rootCategories.find((c) => c.id === activeParentId) || rootCategories[0];
+  const subCategories = activeParent ? categories.filter((c) => c.parentId === activeParent.id) : [];
 
   return (
     <header className="w-full bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
@@ -125,13 +136,17 @@ export default function Header({ siteInfo = defaultSiteInfo }: HeaderProps) {
       </div>
 
       {/* Main Red Nav Bar */}
-      <div className="bg-[#c8102e] text-white shadow-md">
+      <div className="bg-[#c8102e] text-white shadow-md relative">
         <div className="max-w-7xl mx-auto px-4 flex items-center justify-between">
-          {/* Category Dropdown Trigger */}
-          <div className="relative w-64">
+          {/* Category Dropdown Button */}
+          <div
+            className="relative w-64 z-50"
+            onMouseEnter={() => setIsCategoryOpen(true)}
+            onMouseLeave={() => setIsCategoryOpen(false)}
+          >
             <button
               onClick={() => setIsCategoryOpen(!isCategoryOpen)}
-              className="w-full bg-[#a00c24] hover:bg-[#880a1e] text-white py-3 px-4 font-bold text-sm uppercase flex items-center justify-between transition-colors cursor-pointer"
+              className="w-full bg-[#a00c24] hover:bg-[#880a1e] text-white py-3.5 px-4 font-bold text-xs md:text-sm uppercase flex items-center justify-between transition-colors cursor-pointer"
             >
               <div className="flex items-center gap-2">
                 <Menu className="w-5 h-5" />
@@ -139,6 +154,78 @@ export default function Header({ siteInfo = defaultSiteInfo }: HeaderProps) {
               </div>
               <ChevronDown className={`w-4 h-4 transform transition-transform ${isCategoryOpen ? 'rotate-180' : ''}`} />
             </button>
+
+            {/* Mega Menu Dropdown (Matching attached design!) */}
+            {isCategoryOpen && rootCategories.length > 0 && (
+              <div className="absolute top-full left-0 w-[850px] bg-white shadow-2xl border border-gray-200 text-gray-800 flex rounded-b-lg overflow-hidden z-50">
+                {/* Left Parent Categories Column */}
+                <div className="w-64 bg-white border-r border-gray-100 divide-y divide-gray-100 shrink-0">
+                  {rootCategories.map((parent) => {
+                    const isActive = activeParent?.id === parent.id;
+                    return (
+                      <Link
+                        key={parent.id}
+                        href={`/danh-muc/${parent.slug}`}
+                        onMouseEnter={() => setActiveParentId(parent.id)}
+                        className={`flex items-center justify-between p-3.5 text-xs font-bold transition-all ${
+                          isActive
+                            ? "bg-[#c8102e] text-white"
+                            : "text-gray-800 hover:bg-red-50 hover:text-[#c8102e]"
+                        }`}
+                      >
+                        <span className="truncate">{parent.name}</span>
+                        <ChevronRight className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-400"}`} />
+                      </Link>
+                    );
+                  })}
+                </div>
+
+                {/* Right Subcategories & Feature Banner Column */}
+                <div className="flex-1 p-6 flex gap-6 bg-white">
+                  {/* Subcategories Grid */}
+                  <div className="flex-1 grid grid-cols-2 gap-y-3 gap-x-4">
+                    {subCategories.length > 0 ? (
+                      subCategories.map((sub) => (
+                        <Link
+                          key={sub.id}
+                          href={`/danh-muc/${sub.slug}`}
+                          className="flex items-center gap-1.5 text-xs font-semibold text-gray-700 hover:text-[#c8102e] py-1 border-b border-gray-100 transition-colors group"
+                        >
+                          <ChevronRight className="w-3.5 h-3.5 text-gray-400 group-hover:text-[#c8102e] shrink-0" />
+                          <span className="line-clamp-1">{sub.name}</span>
+                        </Link>
+                      ))
+                    ) : (
+                      <div className="col-span-2 py-4">
+                        <Link
+                          href={`/danh-muc/${activeParent?.slug}`}
+                          className="text-xs font-bold text-[#c8102e] hover:underline"
+                        >
+                          Xem tất cả sản phẩm trong {activeParent?.name}
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Category Feature Image */}
+                  <div className="w-56 shrink-0 rounded-lg overflow-hidden border border-gray-200 bg-gray-100 shadow-sm relative group">
+                    <img
+                      src={
+                        activeParent?.image ||
+                        "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=600&auto=format&fit=crop"
+                      }
+                      alt={activeParent?.name || "Danh mục"}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
+                      <span className="text-white text-xs font-bold drop-shadow">
+                        {activeParent?.name}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Navigation Links */}

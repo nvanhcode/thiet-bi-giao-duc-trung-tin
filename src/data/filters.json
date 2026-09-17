@@ -1,0 +1,7 @@
+{
+  "blockCount": ["1 khối", "2 khối", "3 khối", "4 khối", "Liên hoàn"],
+  "investmentLevel": ["Dưới 10 triệu", "10 - 25 triệu", "25 - 50 triệu", "Trên 50 triệu"],
+  "origin": ["Sản xuất trực tiếp", "Nhập khẩu"],
+  "slideType": ["Máng đơn", "Máng đôi", "Máng xoắn", "Máng ống"],
+  "feature": ["Kèm xà đu tay", "Kèm vách leo núi", "Kèm xích đu", "Kèm quây bóng"]
+}

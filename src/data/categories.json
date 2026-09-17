@@ -1,0 +1,68 @@
+[
+  {
+    "id": "cat-noi-that-phong-hoc",
+    "name": "Thiết bị nội thất phòng học",
+    "slug": "thiet-bi-noi-that-phong-hoc",
+    "description": "Bàn ghế, giá kệ gỗ thông, kệ MDF, giá đồ chơi nhựa, tủ tư trang chăn chiếu mầm non.",
+    "parentId": null,
+    "icon": "Armchair",
+    "color": "bg-amber-50 text-amber-700",
+    "image": "/products/catalog/tt-01.jpg",
+    "displayOrder": 1
+  },
+  {
+    "id": "cat-do-choi-ngoai-troi",
+    "name": "Thiết bị đồ chơi ngoài trời",
+    "slug": "thiet-bi-do-choi-ngoai-troi",
+    "description": "Khu vui chơi liên hoàn cầu trượt, xích đu, đu quay, mâm quay, bập bênh, thú nhún, hầm chui, bộ thể chất.",
+    "parentId": null,
+    "icon": "Trees",
+    "color": "bg-red-50 text-[#c8102e]",
+    "image": "/products/catalog/tt-129.jpg",
+    "displayOrder": 2
+  },
+  {
+    "id": "cat-thiet-bi-bep",
+    "name": "Thiết bị chăm sóc nuôi dưỡng",
+    "slug": "thiet-bi-cham-soc-nuoi-duong",
+    "description": "Tủ cơm ga, tủ sấy bát, tủ hấp khăn, giá úp xoong nồi, giá phơi khăn, tủ thuốc y tế mầm non.",
+    "parentId": null,
+    "icon": "Utensils",
+    "color": "bg-emerald-50 text-emerald-600",
+    "image": "/products/catalog/tt-352.jpg",
+    "displayOrder": 3
+  },
+  {
+    "id": "cat-noi-that-van-phong",
+    "name": "Thiết bị nội thất văn phòng",
+    "slug": "thiet-bi-noi-that-van-phong",
+    "description": "Bàn ghế tiếp khách, bàn hiệu trưởng, bàn hiệu phó, tủ hồ sơ gỗ, bục tượng Bác Hồ.",
+    "parentId": null,
+    "icon": "Building2",
+    "color": "bg-blue-50 text-blue-600",
+    "image": "/products/catalog/tt-400.jpg",
+    "displayOrder": 4
+  },
+  {
+    "id": "cat-giao-thong-vuon-co-tich",
+    "name": "Thiết bị giao thông & Vườn cổ tích",
+    "slug": "thiet-bi-giao-thong-vuon-co-tich",
+    "description": "Bộ đèn tín hiệu giao thông, tượng Bạch Tuyết 7 chú lùn, tượng con giống vườn cổ tích.",
+    "parentId": null,
+    "icon": "Castle",
+    "color": "bg-purple-50 text-purple-600",
+    "image": "/products/catalog/tt-450.jpg",
+    "displayOrder": 5
+  },
+  {
+    "id": "cat-day-hoc-hoc-lieu",
+    "name": "Thiết bị dạy học & Học liệu",
+    "slug": "thiet-bi-day-hoc-hoc-lieu",
+    "description": "Bộ nhận biết hình khối, bộ lắp ghép xây dựng, luồn hạt, sa bàn, bộ đồ dùng bác sỹ, nhà bếp.",
+    "parentId": null,
+    "icon": "GraduationCap",
+    "color": "bg-orange-50 text-orange-600",
+    "image": "/products/catalog/tt-471.jpg",
+    "displayOrder": 6
+  }
+]

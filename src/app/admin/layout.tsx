@@ -4,6 +4,7 @@ import {
   Settings,
   Package,
   FolderTree,
+  Sliders,
   Globe,
   ShieldCheck,
   ChevronRight,
@@ -33,39 +34,56 @@ export default function AdminLayout({
           {/* Navigation Menu */}
           <nav className="p-4 space-y-1.5 text-xs font-semibold">
             <div className="px-3 py-2 text-[10px] uppercase text-slate-400 font-bold tracking-wider">
-              CẤU HÌNH HỆ THỐNG
+              QUẢN LÝ NỘI DUNG
             </div>
 
             <Link
-              href="/admin/site-info"
-              className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-[#c8102e] text-white shadow transition-all"
+              href="/admin/categories"
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-slate-800 hover:bg-[#c8102e] text-slate-200 hover:text-white transition-all"
             >
               <div className="flex items-center gap-2.5">
-                <Settings className="w-4 h-4" />
-                <span>Thông tin Website</span>
+                <FolderTree className="w-4 h-4 text-amber-400" />
+                <span>Quản lý danh mục</span>
+              </div>
+              <ChevronRight className="w-3.5 h-3.5 opacity-80" />
+            </Link>
+
+            <Link
+              href="/admin/products"
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-slate-800 hover:bg-[#c8102e] text-slate-200 hover:text-white transition-all"
+            >
+              <div className="flex items-center gap-2.5">
+                <Package className="w-4 h-4 text-emerald-400" />
+                <span>Quản lý sản phẩm</span>
+              </div>
+              <ChevronRight className="w-3.5 h-3.5 opacity-80" />
+            </Link>
+
+            <Link
+              href="/admin/filters"
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-slate-800 hover:bg-[#c8102e] text-slate-200 hover:text-white transition-all"
+            >
+              <div className="flex items-center gap-2.5">
+                <Sliders className="w-4 h-4 text-purple-400" />
+                <span>Thuộc tính bộ lọc</span>
               </div>
               <ChevronRight className="w-3.5 h-3.5 opacity-80" />
             </Link>
 
             <div className="px-3 py-2 mt-4 text-[10px] uppercase text-slate-400 font-bold tracking-wider">
-              QUẢN LÝ NỘI DUNG (SẮP RA MẮT)
+              CẤU HÌNH HỆ THỐNG
             </div>
 
-            <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-slate-400 bg-slate-800/40 cursor-not-allowed">
+            <Link
+              href="/admin/site-info"
+              className="flex items-center justify-between px-3.5 py-2.5 rounded-lg bg-slate-800 hover:bg-[#c8102e] text-slate-200 hover:text-white transition-all"
+            >
               <div className="flex items-center gap-2.5">
-                <Package className="w-4 h-4 opacity-60" />
-                <span>Quản lý sản phẩm</span>
+                <Settings className="w-4 h-4 text-blue-400" />
+                <span>Thông tin Website</span>
               </div>
-              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded font-mono">Chờ</span>
-            </div>
-
-            <div className="flex items-center justify-between px-3.5 py-2.5 rounded-lg text-slate-400 bg-slate-800/40 cursor-not-allowed">
-              <div className="flex items-center gap-2.5">
-                <FolderTree className="w-4 h-4 opacity-60" />
-                <span>Quản lý danh mục</span>
-              </div>
-              <span className="text-[10px] bg-slate-700 text-slate-300 px-2 py-0.5 rounded font-mono">Chờ</span>
-            </div>
+              <ChevronRight className="w-3.5 h-3.5 opacity-80" />
+            </Link>
           </nav>
         </div>
 
@@ -86,12 +104,12 @@ export default function AdminLayout({
         {/* Top bar */}
         <header className="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between shadow-sm">
           <div>
-            <h2 className="text-lg font-bold text-gray-800">Quản Lý Thông Tin Hiển Thị Website</h2>
-            <p className="text-xs text-gray-500">Cấu hình các thông tin Header, Footer, Hotline, Địa chỉ xưởng...</p>
+            <h2 className="text-lg font-bold text-gray-800">Hệ Thống Quản Trị Trung Tín</h2>
+            <p className="text-xs text-gray-500">Quản lý danh mục đa cấp, sản phẩm, bộ lọc và cấu hình giao diện</p>
           </div>
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-              ● File JSON Persistence
+              ● JSON Data Persistence
             </span>
           </div>
         </header>

@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { SiteInfo, defaultSiteInfo } from "@/types/site-info";
+import { SiteInfo, BannerSlide, defaultSiteInfo } from "@/types/site-info";
+import ImageUploadInput from "@/components/ImageUploadInput";
 import {
   Save,
   CheckCircle2,
@@ -12,6 +13,10 @@ import {
   Share2,
   FileCheck,
   RefreshCw,
+  ImageIcon,
+  Plus,
+  Trash2,
+  Sliders,
 } from "lucide-react";
 
 export default function SiteInfoAdminPage() {
@@ -30,7 +35,11 @@ export default function SiteInfoAdminPage() {
       const res = await fetch("/api/admin/site-info");
       if (res.ok) {
         const data = await res.json();
-        setFormData(data);
+        setFormData({
+          ...defaultSiteInfo,
+          ...data,
+          bannerSlides: data.bannerSlides || defaultSiteInfo.bannerSlides,
+        });
       }
     } catch (err) {
       showToast("Không thể tải thông tin từ server", "error");
@@ -44,8 +53,37 @@ export default function SiteInfoAdminPage() {
     setTimeout(() => setToast(null), 4000);
   };
 
-  const handleChange = (field: keyof SiteInfo, value: string) => {
+  const handleChange = (field: keyof SiteInfo, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+  };
+
+  // Banner slides management helpers
+  const handleSlideChange = (index: number, field: keyof BannerSlide, value: string) => {
+    const updatedSlides = [...(formData.bannerSlides || [])];
+    updatedSlides[index] = { ...updatedSlides[index], [field]: value };
+    setFormData((prev) => ({ ...prev, bannerSlides: updatedSlides }));
+  };
+
+  const addSlide = () => {
+    const newSlide: BannerSlide = {
+      id: `slide-${Date.now()}`,
+      title: "TIÊU ĐỀ SLIDE MỚI",
+      subtitle: "Mô tả ngắn gọn cho slide banner mới",
+      image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
+    };
+    setFormData((prev) => ({
+      ...prev,
+      bannerSlides: [...(prev.bannerSlides || []), newSlide],
+    }));
+  };
+
+  const removeSlide = (index: number) => {
+    if ((formData.bannerSlides || []).length <= 1) {
+      alert("Cần giữ lại ít nhất 1 slide banner!");
+      return;
+    }
+    const updatedSlides = (formData.bannerSlides || []).filter((_, i) => i !== index);
+    setFormData((prev) => ({ ...prev, bannerSlides: updatedSlides }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -81,7 +119,7 @@ export default function SiteInfoAdminPage() {
   }
 
   return (
-    <div className="max-w-4xl mx-auto space-y-6">
+    <div className="max-w-4xl mx-auto space-y-6 pb-12">
       {/* Toast Notification */}
       {toast && (
         <div
@@ -150,7 +188,114 @@ export default function SiteInfoAdminPage() {
           </div>
         </div>
 
-        {/* Section 2: Contact Info */}
+        {/* Section 2: Favicon & Social Share Image (OpenGraph) */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+          <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
+            <ImageIcon className="w-5 h-5 text-[#c8102e]" />
+            <h3>Favicon & Hình Ảnh Chia Sẻ Mạng Xã Hội (OpenGraph)</h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Favicon Upload Input */}
+            <ImageUploadInput
+              label="Favicon Icon (.ico, .png, .svg)"
+              value={formData.faviconUrl || ""}
+              onChange={(url) => handleChange("faviconUrl", url)}
+              placeholder="/favicon.ico hoặc dán link / chọn file từ máy..."
+              previewAspect="square"
+            />
+
+            {/* OG Image Upload Input */}
+            <ImageUploadInput
+              label="Hình ảnh chia sẻ Link (OpenGraph Share Image 1200x630)"
+              value={formData.ogImageUrl || ""}
+              onChange={(url) => handleChange("ogImageUrl", url)}
+              placeholder="Dán link hoặc chọn file từ máy..."
+              previewAspect="og"
+            />
+          </div>
+        </div>
+
+        {/* Section 3: Banner Slideshow Manager */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+          <div className="flex items-center justify-between border-b pb-3 border-gray-100">
+            <div className="flex items-center gap-2 text-base font-bold text-gray-800">
+              <Sliders className="w-5 h-5 text-[#c8102e]" />
+              <h3>Quản Lý Banner Slideshow (Trang Chủ)</h3>
+            </div>
+            <button
+              type="button"
+              onClick={addSlide}
+              className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-3.5 py-1.5 rounded-lg flex items-center gap-1 transition-colors shadow"
+            >
+              <Plus className="w-4 h-4" />
+              <span>Thêm Slide Banner</span>
+            </button>
+          </div>
+
+          <div className="space-y-6">
+            {(formData.bannerSlides || []).map((slide, index) => (
+              <div
+                key={slide.id || index}
+                className="p-5 bg-gray-50 rounded-xl border border-gray-200 space-y-4 relative group"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="text-xs font-black text-[#c8102e] uppercase tracking-wider bg-red-50 px-3 py-1 rounded-md border border-red-200">
+                    Slide {index + 1}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => removeSlide(index)}
+                    className="text-gray-400 hover:text-red-600 p-1 transition-colors flex items-center gap-1 text-xs font-bold"
+                    title="Xóa slide này"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                    <span>Xóa slide</span>
+                  </button>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-gray-700 mb-1">
+                        Tiêu đề lớn Slide
+                      </label>
+                      <input
+                        type="text"
+                        required
+                        value={slide.title}
+                        onChange={(e) => handleSlideChange(index, "title", e.target.value)}
+                        className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-bold focus:ring-2 focus:ring-[#c8102e] outline-none bg-white"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-xs font-bold text-gray-700 mb-1">
+                        Tiêu đề phụ (Mô tả ngắn)
+                      </label>
+                      <input
+                        type="text"
+                        value={slide.subtitle}
+                        onChange={(e) => handleSlideChange(index, "subtitle", e.target.value)}
+                        className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-[#c8102e] outline-none bg-white"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Slide Image Upload Control */}
+                  <ImageUploadInput
+                    label="Hình ảnh Banner (Dán link hoặc tải file từ máy tính)"
+                    value={slide.image}
+                    onChange={(url) => handleSlideChange(index, "image", url)}
+                    previewAspect="video"
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Section 4: Contact Info */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
           <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
             <Phone className="w-5 h-5 text-[#c8102e]" />
@@ -211,7 +356,7 @@ export default function SiteInfoAdminPage() {
           </div>
         </div>
 
-        {/* Section 3: Addresses */}
+        {/* Section 5: Addresses */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
           <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
             <MapPin className="w-5 h-5 text-[#c8102e]" />
@@ -247,7 +392,7 @@ export default function SiteInfoAdminPage() {
           </div>
         </div>
 
-        {/* Section 4: Social Media */}
+        {/* Section 6: Social Media */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
           <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
             <Share2 className="w-5 h-5 text-[#c8102e]" />
@@ -305,7 +450,7 @@ export default function SiteInfoAdminPage() {
           </div>
         </div>
 
-        {/* Section 5: Legal & Copyright */}
+        {/* Section 7: Legal & Copyright */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
           <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
             <FileCheck className="w-5 h-5 text-[#c8102e]" />

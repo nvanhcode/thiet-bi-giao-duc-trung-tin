@@ -1,20 +1,9 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { Product } from "@/types/product";
 import { FilePlus } from "lucide-react";
-
-export interface Product {
-  id: string;
-  title: string;
-  code?: string;
-  image: string;
-  oldPrice?: number | null;
-  price?: number | null; // null or 0 means 'Giá: Liên hệ'
-  discount?: number | null;
-  category?: string;
-}
 
 interface ProductCardProps {
   product: Product;
@@ -26,6 +15,10 @@ export default function ProductCard({ product }: ProductCardProps) {
     return val.toLocaleString("vi-VN") + "đ";
   };
 
+  const productUrl = `/san-pham/${product.slug || product.id}`;
+  const imageSrc = product.thumbnail || (product.images && product.images[0]) || "";
+  const titleText = product.name;
+
   return (
     <div className="bg-white rounded-lg border border-gray-200 overflow-hidden hover:shadow-lg transition-all duration-300 flex flex-col justify-between group relative">
       {/* Discount Tag */}
@@ -35,21 +28,23 @@ export default function ProductCard({ product }: ProductCardProps) {
         </span>
       )}
 
-      {/* Product Image */}
-      <div className="relative aspect-square overflow-hidden bg-gray-50 p-4">
+      {/* Product Image Link */}
+      <Link href={productUrl} className="relative aspect-square overflow-hidden bg-gray-50 p-4 block">
         <img
-          src={product.image}
-          alt={product.title}
+          src={imageSrc}
+          alt={titleText}
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
         />
-      </div>
+      </Link>
 
       {/* Product Info */}
       <div className="p-3.5 flex-1 flex flex-col justify-between border-t border-gray-100">
         <div>
-          <h3 className="text-xs md:text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-[#c8102e] transition-colors leading-snug min-h-[36px]">
-            {product.title}
-          </h3>
+          <Link href={productUrl} className="block">
+            <h3 className="text-xs md:text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-[#c8102e] transition-colors leading-snug min-h-[36px]">
+              {titleText}
+            </h3>
+          </Link>
         </div>
 
         <div className="mt-3">
@@ -75,7 +70,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {/* Add to Quote Button */}
           <button
-            onClick={() => alert(`Đã thêm "${product.title}" vào danh sách báo giá!`)}
+            onClick={() => alert(`Đã thêm "${titleText}" vào danh sách báo giá!`)}
             className="w-full py-1.5 px-3 border border-[#c8102e] text-[#c8102e] hover:bg-[#c8102e] hover:text-white rounded text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <FilePlus className="w-3.5 h-3.5" />
