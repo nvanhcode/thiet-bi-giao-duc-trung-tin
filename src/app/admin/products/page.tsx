@@ -179,13 +179,13 @@ export default function AdminProductsPage() {
               </div>
 
               <div className="col-span-2">
-                {prod.price && prod.price > 0 ? (
+                {typeof prod.price === "number" && prod.price > 0 ? (
                   <div>
                     <div className="font-extrabold text-[#c8102e]">{prod.price.toLocaleString("vi-VN")}đ</div>
                     {prod.oldPrice && <div className="text-[10px] text-gray-400 line-through">{prod.oldPrice.toLocaleString("vi-VN")}đ</div>}
                   </div>
                 ) : (
-                  <span className="font-bold text-gray-600">Giá: Liên hệ</span>
+                  <span className="font-bold text-gray-600">Giá: {prod.price || "Liên hệ"}</span>
                 )}
               </div>
 

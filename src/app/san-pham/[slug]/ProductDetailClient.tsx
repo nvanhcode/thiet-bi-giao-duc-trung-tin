@@ -26,8 +26,9 @@ export default function ProductDetailClient({ product, siteInfo }: ProductDetail
   const rawPhone = (siteInfo.hotline || "0862888679").replace(/\s+/g, "");
   const zaloPhone = (siteInfo.zaloNumber || rawPhone).replace(/\s+/g, "");
 
-  const formatPrice = (val?: number | null) => {
-    if (!val || val === 0) return "Liên hệ";
+  const formatPrice = (val?: number | string | null) => {
+    if (!val || val === 0 || val === "Liên hệ") return "Liên hệ";
+    if (typeof val === "string") return val;
     return val.toLocaleString("vi-VN") + "đ";
   };
 
@@ -93,7 +94,7 @@ export default function ProductDetailClient({ product, siteInfo }: ProductDetail
             {/* Price Box */}
             <div className="bg-red-50/60 p-4 rounded-xl border border-red-100 flex items-baseline gap-3">
               <span className="text-xs font-bold text-gray-500">Giá bán:</span>
-              {product.price && product.price > 0 ? (
+              {typeof product.price === "number" && product.price > 0 ? (
                 <>
                   <span className="text-2xl md:text-3xl font-black text-[#c8102e]">
                     {formatPrice(product.price)}

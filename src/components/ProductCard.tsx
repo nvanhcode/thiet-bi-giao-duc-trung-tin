@@ -10,8 +10,9 @@ interface ProductCardProps {
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
-  const formatPrice = (val?: number | null) => {
-    if (!val || val === 0) return "Liên hệ";
+  const formatPrice = (val?: number | string | null) => {
+    if (!val || val === 0 || val === "Liên hệ") return "Liên hệ";
+    if (typeof val === "string") return val;
     return val.toLocaleString("vi-VN") + "đ";
   };
 
@@ -50,7 +51,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="mt-3">
           {/* Price area */}
           <div className="flex flex-wrap items-baseline gap-2 mb-3">
-            {product.price && product.price > 0 ? (
+            {typeof product.price === "number" && product.price > 0 ? (
               <>
                 {product.oldPrice && product.oldPrice > product.price && (
                   <span className="text-xs text-gray-400 line-through">

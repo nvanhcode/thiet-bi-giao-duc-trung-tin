@@ -9,7 +9,7 @@ export interface Product {
   slug: string;
   code?: string;
   categoryIds: string[]; // List of category IDs
-  price?: number | null; // null for 'Giá: Liên hệ'
+  price?: number | string | null; // string or null for 'Giá: Liên hệ'
   oldPrice?: number | null;
   discount?: number | null;
   thumbnail: string;

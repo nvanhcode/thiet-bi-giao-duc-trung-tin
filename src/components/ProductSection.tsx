@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import ProductCard from "./ProductCard";
 import { Product } from "@/types/product";
+import { Category } from "@/types/category";
 import { ChevronRight } from "lucide-react";
 
 const outdoorProducts: Product[] = [
@@ -271,6 +272,11 @@ const woodenProducts: Product[] = [
   },
 ];
 
+interface ProductSectionProps {
+  categories?: Category[];
+  products?: Product[];
+}
+
 interface ProductGroupProps {
   title: string;
   href: string;
@@ -278,6 +284,8 @@ interface ProductGroupProps {
 }
 
 function ProductGroup({ title, href, products }: ProductGroupProps) {
+  if (products.length === 0) return null;
+
   return (
     <div className="mb-10">
       {/* Section Header */}
@@ -306,31 +314,57 @@ function ProductGroup({ title, href, products }: ProductGroupProps) {
   );
 }
 
-export default function ProductSection() {
+export default function ProductSection({ categories = [], products = [] }: ProductSectionProps) {
+  // Get root categories sorted by display order
+  const rootCategories = categories
+    .filter((c) => !c.parentId)
+    .sort((a, b) => (a.displayOrder || 99) - (b.displayOrder || 99));
+
+  // Fallback if no categories passed
+  if (rootCategories.length === 0) {
+    return (
+      <section className="w-full bg-gray-50 py-8">
+        <div className="max-w-7xl mx-auto px-4">
+          <ProductGroup
+            title="ĐỒ CHƠI NGOÀI TRỜI"
+            href="/danh-muc/thiet-bi-do-choi-ngoai-troi"
+            products={outdoorProducts}
+          />
+          <ProductGroup
+            title="NỘI THẤT MẦM NON"
+            href="/danh-muc/thiet-bi-noi-that-phong-hoc"
+            products={furnitureProducts}
+          />
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section className="w-full bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4">
-        <ProductGroup
-          title="ĐỒ CHƠI NGOÀI TRỜI"
-          href="/danh-muc/do-choi-ngoai-troi"
-          products={outdoorProducts}
-        />
-        <ProductGroup
-          title="NỘI THẤT MẦM NON"
-          href="/danh-muc/noi-that-mam-non"
-          products={furnitureProducts}
-        />
-        <ProductGroup
-          title="ĐỒ CHƠI NHẬP KHẨU"
-          href="/danh-muc/do-choi-nhap-khau"
-          products={importedProducts}
-        />
-        <ProductGroup
-          title="ĐỒ CHƠI GỖ CHO BÉ"
-          href="/danh-muc/do-choi-go"
-          products={woodenProducts}
-        />
+        {rootCategories.map((cat) => {
+          // Find products for this category or child categories
+          const childCatIds = categories.filter((c) => c.parentId === cat.id).map((c) => c.id);
+          const targetCatIds = [cat.id, ...childCatIds];
+
+          const groupProducts = products
+            .filter((p) => (p.categoryIds || []).some((id) => targetCatIds.includes(id)))
+            .slice(0, 8);
+
+          if (groupProducts.length === 0) return null;
+
+          return (
+            <ProductGroup
+              key={cat.id}
+              title={cat.name.toUpperCase()}
+              href={`/danh-muc/${cat.slug}`}
+              products={groupProducts}
+            />
+          );
+        })}
       </div>
     </section>
   );
 }
+
