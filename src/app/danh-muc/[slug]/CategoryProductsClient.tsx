@@ -78,7 +78,7 @@ function MultiSelectDropdown({
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 right-0 top-full mt-1.5 z-40 bg-white rounded-xl border border-gray-200 shadow-xl p-2.5 min-w-[200px] space-y-2 animate-in fade-in duration-150">
+        <div className="absolute left-0 right-0 sm:right-auto top-full mt-1.5 z-40 bg-white rounded-xl border border-gray-200 shadow-xl p-2.5 min-w-[180px] sm:min-w-[200px] max-w-[90vw] space-y-2 animate-in fade-in duration-150">
           <div className="flex items-center justify-between border-b border-gray-100 pb-1.5 px-1 text-[11px]">
             <span className="font-bold text-gray-700">{label}</span>
             <button

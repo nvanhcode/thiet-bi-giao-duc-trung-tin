@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       )}
 
       {/* Product Image Link */}
-      <Link href={productUrl} className="relative aspect-square overflow-hidden bg-gray-50 p-4 block">
+      <Link href={productUrl} className="relative aspect-square overflow-hidden bg-gray-50 p-2 sm:p-4 block">
         <img
           src={imageSrc}
           alt={titleText}
@@ -39,31 +39,31 @@ export default function ProductCard({ product }: ProductCardProps) {
       </Link>
 
       {/* Product Info */}
-      <div className="p-3.5 flex-1 flex flex-col justify-between border-t border-gray-100">
+      <div className="p-2.5 sm:p-3.5 flex-1 flex flex-col justify-between border-t border-gray-100">
         <div>
           <Link href={productUrl} className="block">
-            <h3 className="text-xs md:text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-[#c8102e] transition-colors leading-snug min-h-[36px]">
+            <h3 className="text-xs md:text-sm font-semibold text-gray-800 line-clamp-2 group-hover:text-[#c8102e] transition-colors leading-snug min-h-[32px] sm:min-h-[36px]">
               {titleText}
             </h3>
           </Link>
         </div>
 
-        <div className="mt-3">
+        <div className="mt-2 sm:mt-3">
           {/* Price area */}
-          <div className="flex flex-wrap items-baseline gap-2 mb-3">
+          <div className="flex flex-wrap items-baseline gap-1 sm:gap-2 mb-2 sm:mb-3">
             {typeof product.price === "number" && product.price > 0 ? (
               <>
                 {product.oldPrice && product.oldPrice > product.price && (
-                  <span className="text-xs text-gray-400 line-through">
+                  <span className="text-[10px] sm:text-xs text-gray-400 line-through">
                     {formatPrice(product.oldPrice)}
                   </span>
                 )}
-                <span className="text-sm font-extrabold text-[#c8102e]">
+                <span className="text-xs sm:text-sm font-extrabold text-[#c8102e]">
                   {formatPrice(product.price)}
                 </span>
               </>
             ) : (
-              <span className="text-sm font-bold text-gray-700">
+              <span className="text-xs sm:text-sm font-bold text-gray-700">
                 Giá: <span className="text-[#c8102e]">Liên hệ</span>
               </span>
             )}
@@ -72,10 +72,10 @@ export default function ProductCard({ product }: ProductCardProps) {
           {/* Add to Quote Button */}
           <button
             onClick={() => alert(`Đã thêm "${titleText}" vào danh sách báo giá!`)}
-            className="w-full py-1.5 px-3 border border-[#c8102e] text-[#c8102e] hover:bg-[#c8102e] hover:text-white rounded text-xs font-bold transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+            className="w-full py-1.5 px-2 sm:px-3 border border-[#c8102e] text-[#c8102e] hover:bg-[#c8102e] hover:text-white rounded text-[11px] sm:text-xs font-bold transition-colors flex items-center justify-center gap-1 cursor-pointer"
           >
             <FilePlus className="w-3.5 h-3.5" />
-            <span>Thêm vào báo giá</span>
+            <span className="truncate">Thêm vào báo giá</span>
           </button>
         </div>
       </div>
