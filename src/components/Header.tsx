@@ -30,7 +30,7 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
 
   // Group categories into parents & children
   const rootCategories = categories.filter((c) => !c.parentId);
-  
+
   // Set default active parent on hover/open
   const activeParent = rootCategories.find((c) => c.id === activeParentId) || rootCategories[0];
   const subCategories = activeParent ? categories.filter((c) => c.parentId === activeParent.id) : [];
@@ -133,16 +133,6 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
             </div>
           </Link>
 
-          {/* Admin Link Button */}
-          <Link
-            href="/admin"
-            className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 bg-gray-900 text-white hover:bg-[#c8102e] rounded-lg transition-colors text-xs font-bold shadow"
-            title="Trang Admin"
-          >
-            <UserCog className="w-3.5 h-3.5" />
-            <span>Admin</span>
-          </Link>
-
           {/* Mobile Hamburger Toggle Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -206,11 +196,10 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
                         key={parent.id}
                         href={`/danh-muc/${parent.slug}`}
                         onMouseEnter={() => setActiveParentId(parent.id)}
-                        className={`flex items-center justify-between p-3 text-xs font-bold transition-all ${
-                          isActive
+                        className={`flex items-center justify-between p-3 text-xs font-bold transition-all ${isActive
                             ? "bg-[#c8102e] text-white"
                             : "text-gray-800 hover:bg-red-50 hover:text-[#c8102e]"
-                        }`}
+                          }`}
                       >
                         <span className="truncate">{parent.name}</span>
                         <ChevronRight className={`w-4 h-4 ${isActive ? "text-white" : "text-gray-400"}`} />

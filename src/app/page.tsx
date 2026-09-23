@@ -26,7 +26,7 @@ export default async function Home() {
       <Header siteInfo={siteInfo} categories={categories} />
       <main className="flex-1">
         <Hero siteInfo={siteInfo} categories={categories} />
-        <AboutSection />
+        <AboutSection aboutSection={siteInfo.aboutSection} categories={categories} />
         <ProductSection categories={categories} products={products} />
         <ProjectSection />
         <NewsSection />

@@ -6,6 +6,33 @@ export interface BannerSlide {
   link?: string;
 }
 
+export interface AboutHighlight {
+  title: string;
+  subtitle: string;
+}
+
+export interface AboutStat {
+  value: string;
+  label: string;
+}
+
+export interface AboutSectionConfig {
+  badgeText: string;
+  title: string;
+  titleHighlight: string;
+  description1: string;
+  description2: string;
+  highlights: AboutHighlight[];
+  primaryButtonText: string;
+  primaryButtonLink: string;
+  secondaryButtonText: string;
+  secondaryButtonLink: string;
+  cardTitle: string;
+  cardSubtitle: string;
+  stats: AboutStat[];
+  sampleCategoryIds: string[];
+}
+
 export interface SiteInfo {
   siteName: string;
   siteSubName: string;
@@ -22,9 +49,11 @@ export interface SiteInfo {
   pinterestUrl: string;
   mst: string;
   copyrightText: string;
+  primaryColor?: string;
   faviconUrl?: string;
   ogImageUrl?: string;
   bannerSlides?: BannerSlide[];
+  aboutSection?: AboutSectionConfig;
 }
 
 export const defaultBannerSlides: BannerSlide[] = [
@@ -48,6 +77,37 @@ export const defaultBannerSlides: BannerSlide[] = [
   },
 ];
 
+export const defaultAboutSection: AboutSectionConfig = {
+  badgeText: "Xưởng Sản Xuất Trực Tiếp - Trung Tín",
+  title: "Công ty Thiết bị Giáo dục",
+  titleHighlight: "Trung Tín – Giải pháp toàn diện cho Trường Mầm Non & Khu Vui Chơi",
+  description1: "Công ty Thiết bị Giáo dục Trung Tín là đơn vị hàng đầu chuyên trực tiếp sản xuất, nhập khẩu và cung cấp toàn bộ hệ thống thiết bị mầm non, đồ chơi vận động ngoài trời, nội thất phòng học và thiết bị nhà bếp mầm non đạt chuẩn quy định của Bộ Giáo dục & Đào tạo.",
+  description2: "Với danh mục hơn 260+ sản phẩm catalog chính hãng (từ mã TT-01 đến TT-536), Trung Tín cam kết mang đến sản phẩm an toàn tuyệt đối cho trẻ nhỏ, mẫu mã đa dạng phong phú, độ bền vượt trội và giá thành cạnh tranh trực tiếp từ xưởng sản xuất.",
+  highlights: [
+    { title: "Nội thất phòng học", subtitle: "Bàn ghế, giá kệ gỗ thông, kệ tủ MDF, tủ tư trang" },
+    { title: "Đồ chơi ngoài trời", subtitle: "Liên hoàn cầu trượt, xích đu, đu quay, thú nhún" },
+    { title: "Thiết bị bếp & nuôi dưỡng", subtitle: "Tủ cơm ga, tủ sấy bát, giá phơi khăn, giá úp nồi" },
+    { title: "Vườn cổ tích & Học liệu", subtitle: "Tượng cổ tích, bộ đèn giao thông, sa bàn học tập" },
+  ],
+  primaryButtonText: "Xem catalog 260+ sản phẩm",
+  primaryButtonLink: "/san-pham",
+  secondaryButtonText: "Nhận tư vấn & báo giá xưởng",
+  secondaryButtonLink: "/lien-he",
+  cardTitle: "THIẾT BỊ GIÁO DỤC TRUNG TÍN",
+  cardSubtitle: "Uy tín - Chất lượng - Chuẩn Bộ Giáo Dục",
+  stats: [
+    { value: "260+", label: "Mã sản phẩm Catalog" },
+    { value: "100%", label: "Chuẩn an toàn mầm non" },
+    { value: "12 - 24T", label: "Bảo hành chính hãng" },
+    { value: "Toàn Quốc", label: "Giao hàng & Lắp đặt" },
+  ],
+  sampleCategoryIds: [
+    "cat-noi-that-phong-hoc",
+    "cat-do-choi-ngoai-troi",
+    "cat-thiet-bi-bep",
+  ],
+};
+
 export const defaultSiteInfo: SiteInfo = {
   siteName: "TRUNG TÍN",
   siteSubName: "Đồ Chơi & Thiết Bị Mầm Non",
@@ -64,7 +124,9 @@ export const defaultSiteInfo: SiteInfo = {
   pinterestUrl: "https://pinterest.com",
   mst: "0110515643",
   copyrightText: "Copyright 2026 © CÔNG TY TNHH THƯƠNG MẠI & SẢN XUẤT TRUNG TÍN - MST: 0110515643 - DO SỞ KHĐT TP. HÀ NỘI CẤP NGÀY 20/01/2026.",
+  primaryColor: "#c8102e",
   faviconUrl: "/favicon.ico",
   ogImageUrl: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
   bannerSlides: defaultBannerSlides,
+  aboutSection: defaultAboutSection,
 };

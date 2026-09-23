@@ -127,15 +127,6 @@ export default function Footer({ siteInfo = defaultSiteInfo }: FooterProps) {
                   Chính sách bảo hành
                 </Link>
               </li>
-              <li className="pt-2">
-                <Link
-                  href="/admin"
-                  className="inline-flex items-center gap-1.5 text-xs font-bold text-red-400 hover:text-red-300 transition-colors"
-                >
-                  <UserCog className="w-3.5 h-3.5" />
-                  <span>Trang Quản Trị Admin</span>
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -190,15 +181,6 @@ export default function Footer({ siteInfo = defaultSiteInfo }: FooterProps) {
 
             {/* Badges */}
             <div className="pt-2 space-y-2">
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-blue-900/60 border border-blue-500/40 rounded text-blue-200 text-[11px] font-bold">
-                <ShieldAlert className="w-4 h-4 text-blue-400" />
-                <span>ĐÃ THÔNG BÁO BỘ CÔNG THƯƠNG</span>
-              </div>
-              <div>
-                <span className="inline-block px-2.5 py-1 bg-gray-800 border border-gray-700 rounded text-[10px] text-gray-400 font-mono">
-                  DMCA PROTECTED
-                </span>
-              </div>
             </div>
           </div>
         </div>

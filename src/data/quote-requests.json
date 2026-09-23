@@ -1,0 +1,38 @@
+[
+  {
+    "fullName": "Nguyễn Văn Anh",
+    "phone": "0987745545",
+    "customerType": "du-an",
+    "city": "haiduong",
+    "note": "Test",
+    "id": "req_1790147411649",
+    "status": "chua-xu-ly",
+    "adminNote": "",
+    "createdAt": "2026-09-23T07:10:11.649Z",
+    "updatedAt": "2026-09-23T07:10:30.230Z"
+  },
+  {
+    "id": "req_1712345678001",
+    "fullName": "Nguyễn Văn An",
+    "phone": "0987654321",
+    "customerType": "mam-non",
+    "city": "hanoi",
+    "note": "Cần tư vấn thiết bị đồ chơi ngoài trời cho trường mầm non diện tích 150m2",
+    "status": "chua-xu-ly",
+    "adminNote": "",
+    "createdAt": "2026-09-23T08:30:00.000Z",
+    "updatedAt": "2026-09-23T08:30:00.000Z"
+  },
+  {
+    "id": "req_1712345678002",
+    "fullName": "Trần Thị Mai",
+    "phone": "0912345678",
+    "customerType": "du-an",
+    "city": "hcm",
+    "note": "Báo giá trọn gói thiết bị khu vui chơi trẻ em khu đô thị",
+    "status": "dang-xu-ly",
+    "adminNote": "Đã gửi bảng báo giá sơ bộ qua Zalo ngày 23/09",
+    "createdAt": "2026-09-22T14:15:00.000Z",
+    "updatedAt": "2026-09-23T09:00:00.000Z"
+  }
+]

@@ -27,13 +27,23 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const siteInfo = await getSiteInfo();
+  const primaryColor = siteInfo.primaryColor || "#c8102e";
+
   return (
     <html lang="vi" className={`${inter.variable} h-full antialiased`}>
+      <head>
+        <style
+          dangerouslySetInnerHTML={{
+            __html: `:root { --primary: ${primaryColor}; --primary-hover: ${primaryColor}; }`,
+          }}
+        />
+      </head>
       <body className="min-h-full flex flex-col bg-gray-50 text-gray-900 font-sans">
         {children}
       </body>
