@@ -1,0 +1,16 @@
+[
+  {
+    "id": "tin-tuc",
+    "name": "Tin tức",
+    "slug": "tin-tuc",
+    "description": "Thông tin sự kiện, hoạt động và thông cáo mới nhất",
+    "displayOrder": 1
+  },
+  {
+    "id": "tu-van-san-pham",
+    "name": "Tư vấn sản phẩm",
+    "slug": "tu-van-san-pham",
+    "description": "Hướng dẫn kỹ thuật, tiêu chuẩn an toàn và tư vấn lựa chọn thiết bị giáo dục",
+    "displayOrder": 2
+  }
+]
