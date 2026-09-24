@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { SiteInfo, defaultSiteInfo } from "@/types/site-info";
 import { Category } from "@/types/category";
 import {
@@ -23,10 +24,28 @@ interface HeaderProps {
 }
 
 export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: HeaderProps) {
+  const pathname = usePathname();
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedCategoryId, setExpandedCategoryId] = useState<string | null>(null);
   const [activeParentId, setActiveParentId] = useState<string | null>(null);
+
+  const isActiveRoute = (href: string) => {
+    if (!pathname) return false;
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
+
+  const navItems = [
+    { href: "/", label: "TRANG CHỦ", mobileLabel: "Trang chủ" },
+    { href: "/gioi-thieu", label: "GIỚI THIỆU", mobileLabel: "Giới thiệu" },
+    { href: "/cong-trinh", label: "CÔNG TRÌNH", mobileLabel: "Công trình" },
+    { href: "/tin-tuc", label: "TIN TỨC", mobileLabel: "Tin tức" },
+    { href: "/khuyen-mai", label: "KHUYẾN MẠI", mobileLabel: "Khuyến mại HOT 🔥", isHighlight: true },
+    { href: "/lien-he", label: "LIÊN HỆ", mobileLabel: "Liên hệ" },
+  ];
 
   // Group categories into parents & children
   const rootCategories = categories.filter((c) => !c.parentId);
@@ -257,42 +276,26 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
 
           {/* Desktop Navigation Links */}
           <nav className="flex-1 flex items-center gap-1 overflow-x-auto text-xs lg:text-sm font-bold uppercase tracking-wider pl-4">
-            <Link
-              href="/"
-              className="py-3.5 px-4 bg-[#a00c24] text-white hover:bg-[#880a1e] transition-colors whitespace-nowrap"
-            >
-              TRANG CHỦ
-            </Link>
-            <Link
-              href="/gioi-thieu"
-              className="py-3.5 px-4 hover:bg-[#a00c24] transition-colors whitespace-nowrap"
-            >
-              GIỚI THIỆU
-            </Link>
-            <Link
-              href="/cong-trinh"
-              className="py-3.5 px-4 hover:bg-[#a00c24] transition-colors whitespace-nowrap"
-            >
-              CÔNG TRÌNH
-            </Link>
-            <Link
-              href="/tin-tuc"
-              className="py-3.5 px-4 hover:bg-[#a00c24] transition-colors whitespace-nowrap"
-            >
-              TIN TỨC
-            </Link>
-            <Link
-              href="/khuyen-mai"
-              className="py-3.5 px-4 hover:bg-[#a00c24] transition-colors whitespace-nowrap text-yellow-300 animate-pulse"
-            >
-              KHUYẾN MẠI
-            </Link>
-            <Link
-              href="/lien-he"
-              className="py-3.5 px-4 hover:bg-[#a00c24] transition-colors whitespace-nowrap"
-            >
-              LIÊN HỆ
-            </Link>
+            {navItems.map((item) => {
+              const active = isActiveRoute(item.href);
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`py-3.5 px-4 transition-colors whitespace-nowrap ${
+                    active
+                      ? "bg-[#a00c24] text-white shadow-inner"
+                      : "hover:bg-[#a00c24]"
+                  } ${
+                    item.isHighlight
+                      ? "text-yellow-300" + (!active ? " animate-pulse" : "")
+                      : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       </div>
@@ -353,48 +356,27 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
                   TRANG CHÍNH
                 </h4>
                 <nav className="flex flex-col gap-1 text-xs font-bold">
-                  <Link
-                    href="/"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2.5 rounded-lg hover:bg-red-50 hover:text-[#c8102e] text-gray-800 transition-colors flex items-center gap-2"
-                  >
-                    <span>Trang chủ</span>
-                  </Link>
-                  <Link
-                    href="/gioi-thieu"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2.5 rounded-lg hover:bg-red-50 hover:text-[#c8102e] text-gray-800 transition-colors flex items-center gap-2"
-                  >
-                    <span>Giới thiệu</span>
-                  </Link>
-                  <Link
-                    href="/cong-trinh"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2.5 rounded-lg hover:bg-red-50 hover:text-[#c8102e] text-gray-800 transition-colors flex items-center gap-2"
-                  >
-                    <span>Công trình</span>
-                  </Link>
-                  <Link
-                    href="/tin-tuc"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2.5 rounded-lg hover:bg-red-50 hover:text-[#c8102e] text-gray-800 transition-colors flex items-center gap-2"
-                  >
-                    <span>Tin tức</span>
-                  </Link>
-                  <Link
-                    href="/khuyen-mai"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2.5 rounded-lg bg-yellow-50 text-amber-700 hover:bg-yellow-100 transition-colors flex items-center gap-2"
-                  >
-                    <span>Khuyến mại HOT 🔥</span>
-                  </Link>
-                  <Link
-                    href="/lien-he"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                    className="p-2.5 rounded-lg hover:bg-red-50 hover:text-[#c8102e] text-gray-800 transition-colors flex items-center gap-2"
-                  >
-                    <span>Liên hệ</span>
-                  </Link>
+                  {navItems.map((item) => {
+                    const active = isActiveRoute(item.href);
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className={`p-2.5 rounded-lg transition-colors flex items-center gap-2 ${
+                          active
+                            ? item.isHighlight
+                              ? "bg-[#c8102e] text-yellow-300 font-extrabold"
+                              : "bg-[#c8102e] text-white font-extrabold"
+                            : item.isHighlight
+                            ? "bg-yellow-50 text-amber-700 hover:bg-yellow-100"
+                            : "hover:bg-red-50 hover:text-[#c8102e] text-gray-800"
+                        }`}
+                      >
+                        <span>{item.mobileLabel}</span>
+                      </Link>
+                    );
+                  })}
                 </nav>
               </div>
 

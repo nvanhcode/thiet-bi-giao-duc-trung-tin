@@ -1,0 +1,61 @@
+[
+  {
+    "id": "project-1",
+    "slug": "cong-trinh-thi-cong-lap-dat-san-choi-tre-em-ngoai-troi-khu-tap-the-hai-duong",
+    "title": "Công trình thi công lắp đặt sân chơi trẻ em ngoài trời khu tập thể tại Hải Dương",
+    "tag": "Khu tập thể | Hải Dương",
+    "address": "Phường Lê Thanh Nghị, Thành phố Hải Dương",
+    "scale": "Area 350m² - 12 Thiết bị sân chơi ngoài trời & Thảm cao su an toàn EPDM",
+    "client": "Ban quản lý khu dân cư Lê Thanh Nghị",
+    "completionYear": "2024",
+    "excerpt": "Một khu tập thể trẻ sẽ trở nên đáng sống hơn khi có những không gian vui chơi bổ ích cho con trẻ. Dự án trang bị hệ thống xà đơn, cầu trượt liên hoàn và bập bấp cho bé.",
+    "description": "<h3>1. Tổng quan dự án</h3><p>Dự án thi công lắp đặt cụm thiết bị sân chơi ngoài trời tại Khu tập thể Lê Thanh Nghị, TP. Hải Dương được triển khai nhằm tạo sân chơi bổ ích, an toàn cho trẻ em và không gian sinh hoạt cộng đồng chung cho cư dân xung quanh.</p><h3>2. Hạng mục thi công chính</h3><ul><li><strong>Bộ cầu trượt liên hoàn gỗ ngoài trời:</strong> Chất liệu gỗ sồi tự nhiên chống mối mọt, kết hợp các slide nhựa LLDPE nguyên sinh cao cấp.</li><li><strong>Bập bấp & Xích đu tổ chim:</strong> Kết cấu khung thép sơn tĩnh điện chống rỉ sét dưới thời tiết nhiệt đới.</li><li><strong>Lót sàn EPDM giảm chấn:</strong> Đảm bảo độ đàn hồi cao, giảm thiểu va đập khi các bé vui chơi.</li></ul><h3>3. Đánh giá từ chủ đầu tư</h3><p>Dự án được bàn giao đúng tiến độ, đảm bảo đầy đủ các chứng nhận tiêu chuẩn an toàn an toàn quốc gia ISO 9001 và ISO 14001 đối với thiết bị sân chơi ngoài trời.</p>",
+    "image": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1000&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "featured": true,
+    "createdAt": "2024-08-15"
+  },
+  {
+    "id": "project-2",
+    "slug": "thi-cong-lap-dat-cau-truot-go-ngoai-troi-va-thiet-bi-the-duc-khu-do-thi-dak-lak",
+    "title": "Thi công lắp đặt cầu trượt gỗ ngoài trời và thiết bị thể dục ngoài trời cho khu đô thị tại Đắk Lắk",
+    "tag": "Khu đô thị | Đắk Lắk",
+    "address": "Phường Tân An, TP. Buôn Ma Thuột, Đắk Lắk",
+    "scale": "Quy mô 800m² - 20 Cụm thể thao công viên & Cầu trượt dây văng phi thuyền",
+    "client": "Tập đoàn Phát triển Đô thị Đắk Lắk",
+    "completionYear": "2024",
+    "excerpt": "Ngày nay, một khu đô thị đáng sống không chỉ được đánh giá qua hạ tầng mà còn từ tiện ích sân chơi và rèn luyện thể thao ngoài trời hoàn chỉnh.",
+    "description": "<h3>1. Quy hoạch tổng thể không gian công viên</h3><p>Nằm trong quy hoạch công viên trung tâm khu đô thị sinh thái Buôn Ma Thuột, công trình được chia thành 2 phân khu chính: Phân khu vận động thể thao người lớn và Phân khu sân chơi trí tuệ trẻ em.</p><h3>2. Danh mục thiết bị tiêu biểu</h3><ul><li><strong>Hệ thống máy tập thể dục công viên:</strong> Máy đi bộ trên không, xoay eo 3 đĩa, xà đơn xà kép đa năng.</li><li><strong>Cụm vận động dây văng phi thuyền:</strong> Thiết kế sáng tạo kết hợp lưới leo núi vận động thể chất cho lứa tuổi mầm non và tiểu học.</li></ul><p>Tất cả thiết bị đều đạt tiêu chuẩn chịu lực ngoài trời và màu sắc sơn tĩnh điện thẩm mỹ cao.</p>",
+    "image": "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1000&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "featured": true,
+    "createdAt": "2024-09-01"
+  },
+  {
+    "id": "project-3",
+    "slug": "cong-trinh-lap-dat-do-choi-ngoai-troi-cho-khach-san-tai-sam-son-thanh-hoa",
+    "title": "Công trình lắp đặt đồ chơi ngoài trời cho khách sạn tại Sầm Sơn, Thanh Hoá",
+    "tag": "Resort & Khách sạn | Thanh Hoá",
+    "address": "Đường Hồ Xuân Hương, Thị xã Sầm Sơn, Thanh Hoá",
+    "scale": "Quy mô 250m² - Sân chơi bờ biển gia đình & Đồ chơi nước mầm non",
+    "client": "Khách sạn Premier Sầm Sơn Resort",
+    "completionYear": "2024",
+    "excerpt": "Một khu vui chơi ngoài trời được thiết kế đẹp mắt, an toàn sẽ giúp khách sạn thu hút các gia đình có con nhỏ nghỉ dưỡng dài ngày.",
+    "description": "<h3>1. Bối cảnh dự án</h3><p>Nhằm gia tăng giá trị dịch vụ trải nghiệm cho du khách gia đình, Khách sạn Premier Sầm Sơn đã hợp tác cùng đơn vị chúng tôi để thiết kế lắp đặt hệ thống sân chơi ngoài trời mang phong cách đại dương.</p><h3>2. Chi tiết hạng mục</h3><ul><li>Thùng rác hoạt hình & Ghế nghỉ thư giãn sân vườn.</li><li>Cụm cầu trượt lâu đài bờ biển chống ăn mòn muối biển.</li><li>Nhà nhún lò xo mầm non hình sinh vật biển thân thiện.</li></ul>",
+    "image": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1000&auto=format&fit=crop",
+    "images": [
+      "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1000&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1000&auto=format&fit=crop"
+    ],
+    "featured": true,
+    "createdAt": "2024-09-10"
+  }
+]

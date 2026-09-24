@@ -15,6 +15,7 @@ import {
   X,
   ClipboardList,
   Newspaper,
+  Building2,
 } from "lucide-react";
 
 export default function AdminLayout({
@@ -45,6 +46,12 @@ export default function AdminLayout({
           label: "Quản lý bài viết",
           icon: Newspaper,
           iconColor: "text-cyan-400",
+        },
+        {
+          href: "/admin/projects",
+          label: "Quản lý công trình",
+          icon: Building2,
+          iconColor: "text-indigo-400",
         },
         {
           href: "/admin/categories",

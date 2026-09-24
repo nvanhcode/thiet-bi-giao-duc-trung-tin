@@ -1,32 +1,34 @@
-import React from "react";
-import Link from "next/link";
-import { ChevronRight, MapPin } from "lucide-react";
+"use client";
 
-const projects = [
-  {
-    id: 1,
-    title: "Công trình thi công lắp đặt sân chơi trẻ em ngoài trời khu tập thể tại Hải Dương",
-    tag: "Khu tập thể | Hải Dương",
-    excerpt: "Một khu tập thể trẻ sẽ trở nên đáng sống hơn khi có những không gian vui chơi bổ ích cho con trẻ...",
-    image: "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 2,
-    title: "Thi công lắp đặt cầu trượt gỗ ngoài trời và thiết bị thể dục ngoài trời cho khu đô thị tại Đắk Lắk",
-    tag: "Khu đô thị | Đắk Lắk",
-    excerpt: "Ngày nay, một khu đô thị đáng sống không chỉ được đánh giá qua hạ tầng mà còn từ tiện ích sân chơi...",
-    image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=600&auto=format&fit=crop",
-  },
-  {
-    id: 3,
-    title: "Công trình lắp đặt đồ chơi ngoài trời cho khách sạn tại Sầm Sơn, Thanh Hoá",
-    tag: "Resort / Khu nghỉ dưỡng | Thanh Hoá",
-    excerpt: "Một khu vui chơi ngoài trời được thiết kế đẹp mắt, an toàn sẽ giúp khách sạn thu hút các gia đình...",
-    image: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=600&auto=format&fit=crop",
-  },
-];
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
+import { ChevronRight, MapPin, Ruler, Images } from "lucide-react";
+import { Project } from "@/types/project";
 
 export default function ProjectSection() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  const fetchProjects = async () => {
+    try {
+      const res = await fetch("/api/projects");
+      if (res.ok) {
+        const data: Project[] = await res.json();
+        // Filter featured projects or take top 3
+        const featured = data.filter((p) => p.featured);
+        setProjects(featured.length > 0 ? featured.slice(0, 3) : data.slice(0, 3));
+      }
+    } catch (err) {
+      console.error("Lỗi nạp danh sách công trình:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section className="w-full bg-white py-8 border-t border-gray-100">
       <div className="max-w-7xl mx-auto px-4">
@@ -47,37 +49,62 @@ export default function ProjectSection() {
         </div>
 
         {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {projects.map((item) => (
-            <div
-              key={item.id}
-              className="bg-gray-50 rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
-            >
-              <div className="relative aspect-[16/10] overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                <span className="absolute bottom-2 left-2 bg-black/75 backdrop-blur text-white text-[11px] font-medium px-2.5 py-1 rounded-md flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-red-400" />
-                  <span>{item.tag}</span>
-                </span>
-              </div>
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 animate-pulse">
+            {[1, 2, 3].map((i) => (
+              <div key={i} className="bg-gray-100 rounded-xl h-72"></div>
+            ))}
+          </div>
+        ) : projects.length === 0 ? (
+          <div className="text-center py-8 text-xs text-gray-500">Chưa có dữ liệu công trình.</div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {projects.map((item) => (
+              <Link
+                key={item.id}
+                href={`/cong-trinh/${item.slug}`}
+                className="bg-gray-50 rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300 group flex flex-col justify-between"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <span className="absolute bottom-2 left-2 bg-black/75 backdrop-blur text-white text-[11px] font-medium px-2.5 py-1 rounded-md flex items-center gap-1">
+                    <MapPin className="w-3 h-3 text-red-400 shrink-0" />
+                    <span className="line-clamp-1">{item.tag || item.address}</span>
+                  </span>
 
-              <div className="p-4 flex-1 flex flex-col justify-between">
-                <div>
-                  <h3 className="text-sm font-bold text-gray-900 group-hover:text-[#c8102e] transition-colors line-clamp-2 mb-2 leading-snug">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
-                    {item.excerpt}
-                  </p>
+                  {item.images && item.images.length > 0 && (
+                    <span className="absolute top-2 right-2 bg-black/60 text-white text-[10px] px-2 py-1 rounded-md flex items-center gap-1 font-bold backdrop-blur">
+                      <Images className="w-3 h-3 text-indigo-400" />
+                      <span>{item.images.length} ảnh</span>
+                    </span>
+                  )}
                 </div>
-              </div>
-            </div>
-          ))}
-        </div>
+
+                <div className="p-4 flex-1 flex flex-col justify-between space-y-3">
+                  <div>
+                    <h3 className="text-sm font-bold text-gray-900 group-hover:text-[#c8102e] transition-colors line-clamp-2 mb-2 leading-snug">
+                      {item.title}
+                    </h3>
+                    <p className="text-xs text-gray-600 line-clamp-2 leading-relaxed">
+                      {item.excerpt}
+                    </p>
+                  </div>
+
+                  {item.scale && (
+                    <div className="pt-2 border-t border-gray-200/60 text-[11px] text-gray-500 flex items-center gap-1">
+                      <Ruler className="w-3.5 h-3.5 text-indigo-500 shrink-0" />
+                      <span className="line-clamp-1">{item.scale}</span>
+                    </div>
+                  )}
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
