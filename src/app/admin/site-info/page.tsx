@@ -7,6 +7,8 @@ import {
   AboutSectionConfig,
   AboutHighlight,
   AboutStat,
+  AboutValue,
+  AboutCommitment,
   defaultSiteInfo,
   defaultAboutSection,
 } from "@/types/site-info";
@@ -165,6 +167,72 @@ export default function SiteInfoAdminPage() {
       newIds = [...currentIds, catId];
     }
     handleAboutChange("sampleCategoryIds", newIds);
+  };
+
+  const handleCoreValueChange = (index: number, field: keyof AboutValue, value: string) => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedValues = [...(currentAbout.coreValues || defaultAboutSection.coreValues || [])];
+    updatedValues[index] = { ...updatedValues[index], [field]: value };
+    handleAboutChange("coreValues", updatedValues);
+  };
+
+  const addCoreValue = () => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedValues = [
+      ...(currentAbout.coreValues || defaultAboutSection.coreValues || []),
+      { title: "Giá trị mới", description: "Mô tả cho giá trị mới" },
+    ];
+    handleAboutChange("coreValues", updatedValues);
+  };
+
+  const removeCoreValue = (index: number) => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedValues = (currentAbout.coreValues || []).filter((_, i) => i !== index);
+    handleAboutChange("coreValues", updatedValues);
+  };
+
+  const handleCommitmentChange = (index: number, field: keyof AboutCommitment, value: string) => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedCommitments = [...(currentAbout.commitments || defaultAboutSection.commitments || [])];
+    updatedCommitments[index] = { ...updatedCommitments[index], [field]: value };
+    handleAboutChange("commitments", updatedCommitments);
+  };
+
+  const addCommitment = () => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedCommitments = [
+      ...(currentAbout.commitments || defaultAboutSection.commitments || []),
+      { title: "Cam kết mới", description: "Mô tả cho cam kết mới" },
+    ];
+    handleAboutChange("commitments", updatedCommitments);
+  };
+
+  const removeCommitment = (index: number) => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedCommitments = (currentAbout.commitments || []).filter((_, i) => i !== index);
+    handleAboutChange("commitments", updatedCommitments);
+  };
+
+  const handleGalleryImageChange = (index: number, url: string) => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedImages = [...(currentAbout.galleryImages || defaultAboutSection.galleryImages || [])];
+    updatedImages[index] = url;
+    handleAboutChange("galleryImages", updatedImages);
+  };
+
+  const addGalleryImage = () => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedImages = [
+      ...(currentAbout.galleryImages || defaultAboutSection.galleryImages || []),
+      "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
+    ];
+    handleAboutChange("galleryImages", updatedImages);
+  };
+
+  const removeGalleryImage = (index: number) => {
+    const currentAbout = formData.aboutSection || defaultAboutSection;
+    const updatedImages = (currentAbout.galleryImages || []).filter((_, i) => i !== index);
+    handleAboutChange("galleryImages", updatedImages);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -478,13 +546,346 @@ export default function SiteInfoAdminPage() {
 
         {/* Tab 2: Trang Giới Thiệu */}
         <div className={activeTab === "about" ? "space-y-6" : "hidden"}>
+          {/* Section 1: Hero Banner Header (/gioi-thieu) */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+            <div className="flex items-center justify-between border-b pb-3 border-gray-100">
+              <div className="flex items-center gap-2 text-base font-bold text-gray-800">
+                <Sparkles className="w-5 h-5 text-[#c8102e]" />
+                <h3>1. Banner Đầu Trang Giới Thiệu (/gioi-thieu)</h3>
+              </div>
+              <span className="text-xs bg-red-50 text-[#c8102e] font-bold px-2.5 py-1 rounded-full border border-red-100">
+                Trang /gioi-thieu
+              </span>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">
+                  Tiêu đề Hero Banner
+                </label>
+                <input
+                  type="text"
+                  value={aboutConfig.heroTitle || ""}
+                  onChange={(e) => handleAboutChange("heroTitle", e.target.value)}
+                  className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-bold focus:ring-2 focus:ring-[#c8102e] outline-none"
+                  placeholder="VỀ CÔNG TY THIẾT BỊ GIÁO DỤC TRUNG TÍN"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">
+                  Mô tả phụ Hero Banner
+                </label>
+                <textarea
+                  rows={2}
+                  value={aboutConfig.heroSubtitle || ""}
+                  onChange={(e) => handleAboutChange("heroSubtitle", e.target.value)}
+                  className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-[#c8102e] outline-none resize-y"
+                  placeholder="Đơn vị uy tín hàng đầu sản xuất & phân phối đồ chơi mầm non..."
+                />
+              </div>
+
+              <ImageUploadInput
+                label="Hình ảnh nền Hero Banner (/gioi-thieu)"
+                value={aboutConfig.heroImage || ""}
+                onChange={(url) => handleAboutChange("heroImage", url)}
+                placeholder="Dán link hoặc tải ảnh lên từ máy..."
+                previewAspect="video"
+              />
+            </div>
+          </div>
+
+          {/* Section 2: Story & Company Overview */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+            <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
+              <Building2 className="w-5 h-5 text-[#c8102e]" />
+              <h3>2. Câu Chuyện & Năng Lực Sản Xuất</h3>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">
+                  Tiêu đề phần câu chuyện
+                </label>
+                <input
+                  type="text"
+                  value={aboutConfig.storyTitle || ""}
+                  onChange={(e) => handleAboutChange("storyTitle", e.target.value)}
+                  className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-bold focus:ring-2 focus:ring-[#c8102e] outline-none"
+                  placeholder="Câu Chuyện & Năng Lực Sản Xuất"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">
+                  Nội dung giới thiệu chi tiết (Mỗi đoạn cách nhau 1 dòng trống)
+                </label>
+                <textarea
+                  rows={6}
+                  value={aboutConfig.storyContent || ""}
+                  onChange={(e) => handleAboutChange("storyContent", e.target.value)}
+                  className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-[#c8102e] outline-none resize-y"
+                  placeholder="Nhập nội dung chi tiết giới thiệu năng lực nhà xưởng, quy trình sản xuất..."
+                />
+              </div>
+
+              <ImageUploadInput
+                label="Hình ảnh minh họa Xưởng / Năng lực sản xuất"
+                value={aboutConfig.storyImage || ""}
+                onChange={(url) => handleAboutChange("storyImage", url)}
+                placeholder="Dán link hoặc tải ảnh lên từ máy..."
+                previewAspect="video"
+              />
+            </div>
+          </div>
+
+          {/* Section 3: Vision & Mission */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+            <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
+              <Sparkles className="w-5 h-5 text-[#c8102e]" />
+              <h3>3. Tầm Nhìn Chiến Lược & Sứ Mệnh</h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-3">
+                <span className="text-xs font-bold text-[#c8102e] uppercase block">Tầm Nhìn</span>
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 mb-1">Tiêu đề Tầm Nhìn</label>
+                  <input
+                    type="text"
+                    value={aboutConfig.visionTitle || ""}
+                    onChange={(e) => handleAboutChange("visionTitle", e.target.value)}
+                    className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs font-bold bg-white outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 mb-1">Nội dung Tầm Nhìn</label>
+                  <textarea
+                    rows={3}
+                    value={aboutConfig.visionContent || ""}
+                    onChange={(e) => handleAboutChange("visionContent", e.target.value)}
+                    className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs bg-white outline-none resize-y"
+                  />
+                </div>
+              </div>
+
+              <div className="p-4 bg-gray-50 rounded-xl border border-gray-200 space-y-3">
+                <span className="text-xs font-bold text-amber-600 uppercase block">Sứ Mệnh</span>
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 mb-1">Tiêu đề Sứ Mệnh</label>
+                  <input
+                    type="text"
+                    value={aboutConfig.missionTitle || ""}
+                    onChange={(e) => handleAboutChange("missionTitle", e.target.value)}
+                    className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs font-bold bg-white outline-none"
+                  />
+                </div>
+                <div>
+                  <label className="block text-[11px] font-bold text-gray-700 mb-1">Nội dung Sứ Mệnh</label>
+                  <textarea
+                    rows={3}
+                    value={aboutConfig.missionContent || ""}
+                    onChange={(e) => handleAboutChange("missionContent", e.target.value)}
+                    className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs bg-white outline-none resize-y"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Section 4: Core Values List Editor */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+            <div className="flex items-center justify-between border-b pb-3 border-gray-100">
+              <div className="flex items-center gap-2 text-base font-bold text-gray-800">
+                <CheckCircle2 className="w-5 h-5 text-[#c8102e]" />
+                <h3>4. Giá Trị Cốt Lõi (Core Values)</h3>
+              </div>
+              <button
+                type="button"
+                onClick={addCoreValue}
+                className="px-3 py-1.5 bg-red-50 text-[#c8102e] hover:bg-red-100 text-xs font-bold rounded-lg border border-red-200 flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Thêm giá trị</span>
+              </button>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1">Tiêu đề phần Giá trị cốt lõi</label>
+              <input
+                type="text"
+                value={aboutConfig.coreValuesTitle || ""}
+                onChange={(e) => handleAboutChange("coreValuesTitle", e.target.value)}
+                className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-bold outline-none mb-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(aboutConfig.coreValues || defaultAboutSection.coreValues || []).map((val, idx) => (
+                <div key={idx} className="p-3.5 bg-gray-50 rounded-xl border border-gray-200 space-y-2 relative">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-[#c8102e] uppercase">Giá trị 0{idx + 1}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeCoreValue(idx)}
+                      className="text-gray-400 hover:text-red-600 p-1 rounded transition-colors cursor-pointer"
+                      title="Xóa giá trị này"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-gray-700 mb-1">Tên giá trị</label>
+                    <input
+                      type="text"
+                      value={val.title}
+                      onChange={(e) => handleCoreValueChange(idx, "title", e.target.value)}
+                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs font-bold bg-white outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-gray-700 mb-1">Mô tả ngắn</label>
+                    <textarea
+                      rows={2}
+                      value={val.description}
+                      onChange={(e) => handleCoreValueChange(idx, "description", e.target.value)}
+                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs bg-white outline-none resize-y"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 5: Commitments List Editor */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+            <div className="flex items-center justify-between border-b pb-3 border-gray-100">
+              <div className="flex items-center gap-2 text-base font-bold text-gray-800">
+                <FileCheck className="w-5 h-5 text-[#c8102e]" />
+                <h3>5. Cam Kết Chất Lượng Từ Trung Tín</h3>
+              </div>
+              <button
+                type="button"
+                onClick={addCommitment}
+                className="px-3 py-1.5 bg-red-50 text-[#c8102e] hover:bg-red-100 text-xs font-bold rounded-lg border border-red-200 flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Thêm cam kết</span>
+              </button>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1">Tiêu đề phần Cam kết</label>
+              <input
+                type="text"
+                value={aboutConfig.commitmentsTitle || ""}
+                onChange={(e) => handleAboutChange("commitmentsTitle", e.target.value)}
+                className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-bold outline-none mb-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(aboutConfig.commitments || defaultAboutSection.commitments || []).map((cmt, idx) => (
+                <div key={idx} className="p-3.5 bg-gray-50 rounded-xl border border-gray-200 space-y-2 relative">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-gray-600 uppercase">Cam kết #{idx + 1}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeCommitment(idx)}
+                      className="text-gray-400 hover:text-red-600 p-1 rounded transition-colors cursor-pointer"
+                      title="Xóa cam kết"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-gray-700 mb-1">Tiêu đề cam kết</label>
+                    <input
+                      type="text"
+                      value={cmt.title}
+                      onChange={(e) => handleCommitmentChange(idx, "title", e.target.value)}
+                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs font-bold bg-white outline-none"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold text-gray-700 mb-1">Mô tả chi tiết</label>
+                    <textarea
+                      rows={2}
+                      value={cmt.description}
+                      onChange={(e) => handleCommitmentChange(idx, "description", e.target.value)}
+                      className="w-full px-3 py-1.5 border border-gray-300 rounded-lg text-xs bg-white outline-none resize-y"
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 6: Photo Gallery Showcase */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+            <div className="flex items-center justify-between border-b pb-3 border-gray-100">
+              <div className="flex items-center gap-2 text-base font-bold text-gray-800">
+                <ImageIcon className="w-5 h-5 text-[#c8102e]" />
+                <h3>6. Thư Viện Ảnh Xưởng & Công Trình</h3>
+              </div>
+              <button
+                type="button"
+                onClick={addGalleryImage}
+                className="px-3 py-1.5 bg-red-50 text-[#c8102e] hover:bg-red-100 text-xs font-bold rounded-lg border border-red-200 flex items-center gap-1 transition-colors cursor-pointer"
+              >
+                <Plus className="w-3.5 h-3.5" />
+                <span>Thêm ảnh mới</span>
+              </button>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold text-gray-700 mb-1">Tiêu đề phần Thư viện ảnh</label>
+              <input
+                type="text"
+                value={aboutConfig.galleryTitle || ""}
+                onChange={(e) => handleAboutChange("galleryTitle", e.target.value)}
+                className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-bold outline-none mb-3"
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {(aboutConfig.galleryImages || defaultAboutSection.galleryImages || []).map((imgUrl, idx) => (
+                <div key={idx} className="p-3 bg-gray-50 rounded-xl border border-gray-200 space-y-2 relative">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[10px] font-bold text-gray-500 uppercase">Hình ảnh #{idx + 1}</span>
+                    <button
+                      type="button"
+                      onClick={() => removeGalleryImage(idx)}
+                      className="text-gray-400 hover:text-red-600 p-1 rounded transition-colors cursor-pointer"
+                      title="Xóa hình ảnh này"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <ImageUploadInput
+                    label=""
+                    value={imgUrl}
+                    onChange={(url) => handleGalleryImageChange(idx, url)}
+                    placeholder="Dán link ảnh hoặc tải ảnh lên..."
+                    previewAspect="video"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Section 7: About Section Homepage Settings */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-6">
             <div className="flex items-center justify-between border-b pb-3 border-gray-100">
               <div className="flex items-center gap-2 text-base font-bold text-gray-800">
                 <Sparkles className="w-5 h-5 text-[#c8102e]" />
-                <h3>Cấu Hình Phần Giới Thiệu (About Section)</h3>
+                <h3>7. Cấu Hình Khung Giới Thiệu Ở Trang Chủ (Homepage About Section)</h3>
               </div>
-              <span className="text-xs bg-red-50 text-[#c8102e] font-bold px-2.5 py-1 rounded-full border border-red-100">
+              <span className="text-xs bg-gray-100 text-gray-600 font-bold px-2.5 py-1 rounded-full border border-gray-200">
                 Trang chủ
               </span>
             </div>
