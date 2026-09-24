@@ -16,8 +16,8 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteInfo = await getSiteInfo();
 
   return {
-    title: `Liên Hệ | ${siteInfo.siteName || "TRUNG TÍN"} - ${siteInfo.siteSubName || "Đồ Chơi & Thiết Bị Mầm Non"}`,
-    description: `Thông tin liên hệ, hotline ${siteInfo.hotline}, email ${siteInfo.email}, địa chỉ trụ sở văn phòng và xưởng sản xuất thiết bị mầm non Trung Tín tại Hà Nội.`,
+    title: `Liên Hệ | ${siteInfo.siteName || "PHÚC AN MINH"} - ${siteInfo.siteSubName || "Đồ Chơi & Thiết Bị Giáo Dục Mầm Non"}`,
+    description: `Thông tin liên hệ, hotline ${siteInfo.hotline}, email ${siteInfo.email}, địa chỉ trụ sở văn phòng và VPGD thiết bị mầm non Phúc An Minh tại Hà Nội.`,
     openGraph: {
       title: `Liên Hệ | ${siteInfo.siteName} - ${siteInfo.siteSubName}`,
       description: `Hotline: ${siteInfo.hotline}. Địa chỉ: ${siteInfo.address}`,
@@ -35,19 +35,19 @@ export default async function ContactPage() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "CÔNG TY TNHH THƯƠNG MẠI & SẢN XUẤT TRUNG TÍN",
+    name: "CÔNG TY TNHH THƯƠNG MẠI CÔNG NGHỆ PHÚC AN MINH",
     alternateName: `${siteInfo.siteName} - ${siteInfo.siteSubName}`,
     telephone: siteInfo.hotline,
     email: siteInfo.email,
     address: {
       "@type": "PostalAddress",
       streetAddress: siteInfo.address,
-      addressLocality: "Hoàng Mai",
+      addressLocality: "Tiến Thắng",
       addressRegion: "Hà Nội",
       addressCountry: "VN",
     },
-    taxID: siteInfo.mst || "0110515643",
-    url: "https://dochoitrungtin.vn",
+    taxID: siteInfo.mst || "0110733916",
+    url: "https://phucanminh.vn",
   };
 
   return (
@@ -78,7 +78,7 @@ export default async function ContactPage() {
         <div className="max-w-7xl mx-auto px-4 relative z-10 space-y-3">
           <div className="inline-flex items-center gap-2 bg-[#c8102e] text-white text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Trung Tín - Đồ Chơi & Thiết Bị Mầm Non</span>
+            <span>Phúc An Minh - Đồ Chơi & Thiết Bị Mầm Non</span>
           </div>
           <h1 className="text-3xl md:text-4xl font-black text-white tracking-tight">
             Thông Tin Liên Hệ & Tư Vấn Báo Giá

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { SiteInfo, defaultSiteInfo } from "@/types/site-info";
 import {
   MapPin,
-  Factory,
+  Building2,
   Phone,
   Mail,
   ShieldAlert,
@@ -22,7 +22,7 @@ export default function Footer({ siteInfo = defaultSiteInfo }: FooterProps) {
           {/* Column 1: Company Info */}
           <div className="lg:col-span-4 space-y-3">
             <h3 className="text-sm font-black text-white uppercase tracking-wider mb-4 border-b border-gray-800 pb-2">
-              ĐỒ CHƠI MẦM NON {siteInfo.siteName || "TRUNG TÍN"}
+              ĐỒ CHƠI MẦM NON {siteInfo.siteName || "PHÚC AN MINH"}
             </h3>
             <div className="flex items-start gap-2.5">
               <MapPin className="w-4 h-4 text-[#c8102e] shrink-0 mt-0.5" />
@@ -30,12 +30,14 @@ export default function Footer({ siteInfo = defaultSiteInfo }: FooterProps) {
                 <span className="font-bold text-gray-200">Địa chỉ:</span> {siteInfo.address}
               </p>
             </div>
-            <div className="flex items-start gap-2.5">
-              <Factory className="w-4 h-4 text-[#c8102e] shrink-0 mt-0.5" />
-              <p>
-                <span className="font-bold text-gray-200">Xưởng sản xuất:</span> {siteInfo.factoryAddress}
-              </p>
-            </div>
+            {siteInfo.factoryAddress && (
+              <div className="flex items-start gap-2.5">
+                <Building2 className="w-4 h-4 text-[#c8102e] shrink-0 mt-0.5" />
+                <p>
+                  <span className="font-bold text-gray-200">VPGD:</span> {siteInfo.factoryAddress}
+                </p>
+              </div>
+            )}
             <div className="flex items-center gap-2.5">
               <Phone className="w-4 h-4 text-[#c8102e] shrink-0" />
               <p>

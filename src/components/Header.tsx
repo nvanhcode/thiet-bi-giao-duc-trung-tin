@@ -65,14 +65,14 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
         {/* Logo & Subtitle */}
         <Link href="/" className="flex items-center gap-2 group shrink-0">
           <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#c8102e] text-white flex flex-col items-center justify-center font-bold shadow-md transform group-hover:scale-105 transition-transform">
-            <span className="text-[10px] md:text-xs leading-none">{siteInfo.logoText || "TRUNG TÍN"}</span>
+            <span className="text-[10px] md:text-xs leading-none">{siteInfo.logoText || "PHÚC AN MINH"}</span>
           </div>
           <div className="flex flex-col">
             <span className="text-lg md:text-xl font-extrabold text-[#c8102e] tracking-tight leading-tight">
-              {siteInfo.siteName || "TRUNG TÍN"}
+              {siteInfo.siteName || "PHÚC AN MINH"}
             </span>
             <span className="text-[9px] md:text-[10px] font-semibold text-gray-500 uppercase tracking-wider hidden sm:inline-block">
-              {siteInfo.siteSubName || "Đồ Chơi & Thiết Bị Mầm Non"}
+              {siteInfo.siteSubName || "Đồ Chơi & Thiết Bị Giáo Dục Mầm Non"}
             </span>
           </div>
         </Link>
@@ -111,7 +111,7 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
                 href={`tel:${(siteInfo.hotline || "").replace(/\s+/g, "")}`}
                 className="text-xs lg:text-sm font-bold text-[#c8102e] hover:underline"
               >
-                {siteInfo.hotline || "0862 888 679"}
+                {siteInfo.hotline || "0978 618 790"}
               </a>
             </div>
           </div>
@@ -315,9 +315,9 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
             <div className="p-4 bg-[#c8102e] text-white flex items-center justify-between shadow">
               <div className="flex items-center gap-2">
                 <div className="w-8 h-8 rounded-full bg-white text-[#c8102e] flex items-center justify-center font-black text-xs">
-                  TT
+                  PAM
                 </div>
-                <span className="font-extrabold text-sm uppercase tracking-wide">MENU TRUNG TÍN</span>
+                <span className="font-extrabold text-sm uppercase tracking-wide">MENU PHÚC AN MINH</span>
               </div>
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
@@ -336,7 +336,7 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
                   className="font-extrabold text-[#c8102e] text-xs hover:underline flex items-center gap-1"
                 >
                   <PhoneCall className="w-3 h-3 animate-pulse" />
-                  <span>{siteInfo.hotline || "0862 888 679"}</span>
+                  <span>{siteInfo.hotline || "0978 618 790"}</span>
                 </a>
               </div>
               <Link

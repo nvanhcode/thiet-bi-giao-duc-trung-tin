@@ -67,7 +67,7 @@ export default function QuoteFormBanner({ siteInfo = defaultSiteInfo }: QuoteFor
             </h2>
 
             <p className="text-red-100 text-sm md:text-base leading-relaxed max-w-lg">
-              Thêm nhiều sản phẩm vào danh sách và gửi một lần để Đồ Chơi Trung Tín tư vấn, báo giá theo số lượng, địa điểm và nhu cầu sử dụng.
+              Thêm nhiều sản phẩm vào danh sách và gửi một lần để Đồ Chơi Phúc An Minh tư vấn, báo giá theo số lượng, địa điểm và nhu cầu sử dụng.
             </p>
 
             {/* Sub box with action buttons */}
@@ -192,7 +192,7 @@ export default function QuoteFormBanner({ siteInfo = defaultSiteInfo }: QuoteFor
                 </div>
 
                 <p className="text-[11px] text-gray-500 italic">
-                  Khi gửi yêu cầu, Đồ Chơi Trung Tín sẽ liên hệ lại tư vấn theo nhu cầu của anh/chị.
+                  Khi gửi yêu cầu, Đồ Chơi Phúc An Minh sẽ liên hệ lại tư vấn theo nhu cầu của anh/chị.
                 </p>
 
                 {/* Submit button */}
@@ -243,7 +243,7 @@ export default function QuoteFormBanner({ siteInfo = defaultSiteInfo }: QuoteFor
               </h3>
 
               <p className="text-xs md:text-sm text-gray-600 leading-relaxed">
-                Cảm ơn anh/chị <span className="font-bold text-gray-900">{submittedName}</span>! Đồ Chơi Trung Tín đã ghi nhận yêu cầu báo giá của anh/chị và sẽ liên hệ hỗ trợ trong thời gian sớm nhất.
+                Cảm ơn anh/chị <span className="font-bold text-gray-900">{submittedName}</span>! Đồ Chơi Phúc An Minh đã ghi nhận yêu cầu báo giá của anh/chị và sẽ liên hệ hỗ trợ trong thời gian sớm nhất.
               </p>
 
               {/* Call Hotline Callout Box */}
@@ -260,7 +260,7 @@ export default function QuoteFormBanner({ siteInfo = defaultSiteInfo }: QuoteFor
                   className="w-full bg-[#c8102e] hover:bg-[#a00c24] text-white font-extrabold text-xs py-2.5 px-4 rounded-lg transition-all shadow-md flex items-center justify-center gap-2 group cursor-pointer"
                 >
                   <PhoneCall className="w-4 h-4 text-yellow-300 animate-bounce" />
-                  <span>Gọi Hotline: {siteInfo.hotline || "0862.888.679"}</span>
+                  <span>Gọi Hotline: {siteInfo.hotline || "0978 618 790"}</span>
                 </a>
               </div>
 

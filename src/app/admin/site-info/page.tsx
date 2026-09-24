@@ -481,7 +481,7 @@ export default function SiteInfoAdminPage() {
                 />
                 <div className="flex items-center gap-1.5 overflow-x-auto py-1">
                   {[
-                    { name: "Đỏ Đô Trung Tín (Mặc định)", hex: "#c8102e" },
+                    { name: "Đỏ Thương Hiệu (Mặc định)", hex: "#c8102e" },
                     { name: "Đỏ Tươi", hex: "#dc2626" },
                     { name: "Xanh Dương", hex: "#0284c7" },
                     { name: "Xanh Lá", hex: "#16a34a" },
@@ -568,7 +568,7 @@ export default function SiteInfoAdminPage() {
                   value={aboutConfig.heroTitle || ""}
                   onChange={(e) => handleAboutChange("heroTitle", e.target.value)}
                   className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-bold focus:ring-2 focus:ring-[#c8102e] outline-none"
-                  placeholder="VỀ CÔNG TY THIẾT BỊ GIÁO DỤC TRUNG TÍN"
+                  placeholder="VỀ CÔNG TY TNHH THƯƠNG MẠI CÔNG NGHỆ PHÚC AN MINH"
                 />
               </div>
 
@@ -625,12 +625,12 @@ export default function SiteInfoAdminPage() {
                   value={aboutConfig.storyContent || ""}
                   onChange={(e) => handleAboutChange("storyContent", e.target.value)}
                   className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs focus:ring-2 focus:ring-[#c8102e] outline-none resize-y"
-                  placeholder="Nhập nội dung chi tiết giới thiệu năng lực nhà xưởng, quy trình sản xuất..."
+                  placeholder="Nhập nội dung chi tiết giới thiệu năng lực công ty, quy trình cung ứng..."
                 />
               </div>
 
               <ImageUploadInput
-                label="Hình ảnh minh họa Xưởng / Năng lực sản xuất"
+                label="Hình ảnh minh họa Công Ty / Năng lực cung cấp"
                 value={aboutConfig.storyImage || ""}
                 onChange={(url) => handleAboutChange("storyImage", url)}
                 placeholder="Dán link hoặc tải ảnh lên từ máy..."
@@ -764,7 +764,7 @@ export default function SiteInfoAdminPage() {
             <div className="flex items-center justify-between border-b pb-3 border-gray-100">
               <div className="flex items-center gap-2 text-base font-bold text-gray-800">
                 <FileCheck className="w-5 h-5 text-[#c8102e]" />
-                <h3>5. Cam Kết Chất Lượng Từ Trung Tín</h3>
+                <h3>5. Cam Kết Chất Lượng Từ Phúc An Minh</h3>
               </div>
               <button
                 type="button"
@@ -830,7 +830,7 @@ export default function SiteInfoAdminPage() {
             <div className="flex items-center justify-between border-b pb-3 border-gray-100">
               <div className="flex items-center gap-2 text-base font-bold text-gray-800">
                 <ImageIcon className="w-5 h-5 text-[#c8102e]" />
-                <h3>6. Thư Viện Ảnh Xưởng & Công Trình</h3>
+                <h3>6. Thư Viện Ảnh Dự Án & Công Trình</h3>
               </div>
               <button
                 type="button"
@@ -901,7 +901,7 @@ export default function SiteInfoAdminPage() {
                   value={aboutConfig.badgeText}
                   onChange={(e) => handleAboutChange("badgeText", e.target.value)}
                   className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-xs font-bold focus:ring-2 focus:ring-[#c8102e] outline-none"
-                  placeholder="Ví dụ: Xưởng Sản Xuất Trực Tiếp - Trung Tín"
+                  placeholder="Ví dụ: Công Ty Thương Mại & Thiết Bị Giáo Dục - Phúc An Minh"
                 />
               </div>
 
@@ -1331,7 +1331,7 @@ export default function SiteInfoAdminPage() {
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
             <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
               <MapPin className="w-5 h-5 text-[#c8102e]" />
-              <h3>Địa Chỉ Trụ Sở & Xưởng Sản Xuất</h3>
+              <h3>Địa Chỉ Trụ Sở & Văn Phòng Giao Dịch</h3>
             </div>
 
             <div className="space-y-4">
@@ -1349,7 +1349,7 @@ export default function SiteInfoAdminPage() {
 
               <div>
                 <label className="block text-xs font-bold text-gray-700 mb-1">
-                  Địa chỉ xưởng sản xuất
+                  Địa chỉ văn phòng giao dịch (VPGD)
                 </label>
                 <input
                   type="text"
@@ -1378,7 +1378,7 @@ export default function SiteInfoAdminPage() {
                   value={formData.contactDescription || ""}
                   onChange={(e) => handleChange("contactDescription", e.target.value)}
                   className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#c8102e] outline-none"
-                  placeholder="Công ty TNHH Thương Mại & Sản Xuất Trung Tín sẵn sàng hỗ trợ tư vấn..."
+                  placeholder="Công ty TNHH Thương Mại Công Nghệ Phúc An Minh sẵn sàng hỗ trợ tư vấn..."
                 />
               </div>
 

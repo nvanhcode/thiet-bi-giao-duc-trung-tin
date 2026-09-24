@@ -162,7 +162,7 @@ export default function FloatingWidgets({ siteInfo = defaultSiteInfo }: Floating
                       Yêu Cầu Tư Vấn & Gọi Lại
                     </h3>
                     <p className="text-xs text-gray-500">
-                      Gửi thông tin, Đồ Chơi Trung Tín sẽ gọi lại tư vấn ngay lập tức!
+                      Gửi thông tin, Đồ Chơi Phúc An Minh sẽ gọi lại tư vấn ngay lập tức!
                     </p>
                   </div>
                 </div>
@@ -293,7 +293,7 @@ export default function FloatingWidgets({ siteInfo = defaultSiteInfo }: Floating
                 </h3>
 
                 <p className="text-xs text-gray-600 leading-relaxed">
-                  Cảm ơn bạn! Đồ Chơi Trung Tín đã nhận được yêu cầu tư vấn gọi lại và sẽ liên hệ hỗ trợ bạn trong thời gian sớm nhất.
+                  Cảm ơn bạn! Đồ Chơi Phúc An Minh đã nhận được yêu cầu tư vấn gọi lại và sẽ liên hệ hỗ trợ bạn trong thời gian sớm nhất.
                 </p>
 
                 {/* Call Hotline Callout */}
@@ -308,7 +308,7 @@ export default function FloatingWidgets({ siteInfo = defaultSiteInfo }: Floating
                     className="w-full bg-[#c8102e] hover:bg-[#a00c24] text-white font-bold text-xs py-2 px-3 rounded-lg transition-all flex items-center justify-center gap-1.5 cursor-pointer"
                   >
                     <PhoneCall className="w-3.5 h-3.5 text-yellow-300 animate-bounce" />
-                    <span>Gọi Hotline: {siteInfo.hotline || "0862.888.679"}</span>
+                    <span>Gọi Hotline: {siteInfo.hotline || "0978 618 790"}</span>
                   </a>
                 </div>
 

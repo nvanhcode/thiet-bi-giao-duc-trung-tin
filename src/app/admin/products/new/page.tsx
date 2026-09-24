@@ -44,14 +44,14 @@ export default function NewProductPage() {
     specifications: [
       { key: "Kích thước", value: "" },
       { key: "Chất liệu", value: "Nhựa LLDPE nhập khẩu, Khung sắt sơn tĩnh điện" },
-      { key: "Xuất xứ", value: "Sản xuất trực tiếp tại xưởng Trung Tín" },
+      { key: "Xuất xứ", value: "Phân phối chính hãng Phúc An Minh" },
       { key: "Bảo hành", value: "24 tháng chính hãng" },
     ],
     inStock: true,
     isHot: false,
     blockCount: "",
     investmentLevel: "",
-    origin: "Sản xuất trực tiếp",
+    origin: "Chính hãng",
     slideType: "",
     feature: "",
   });

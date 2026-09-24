@@ -159,7 +159,7 @@ export default function Hero({ siteInfo = defaultSiteInfo, categories }: HeroPro
               <div className="max-w-md mx-auto relative hidden sm:block">
                 <input
                   type="text"
-                  placeholder={`Đồ chơi ${siteInfo.siteName || "Trung Tín"} có tất cả...`}
+                  placeholder={`Đồ chơi ${siteInfo.siteName || "Phúc An Minh"} có tất cả...`}
                   className="w-full py-2.5 px-4 pr-10 rounded-full bg-white/90 backdrop-blur text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c8102e] shadow-lg"
                 />
                 <button className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-[#c8102e] text-white rounded-full flex items-center justify-center hover:bg-[#a00c24]">
@@ -224,7 +224,7 @@ export default function Hero({ siteInfo = defaultSiteInfo, categories }: HeroPro
             </div>
             <div>
               <h4 className="text-[11px] sm:text-xs md:text-sm font-bold text-gray-900 leading-snug">
-                Sản xuất & cung ứng
+                Phân phối & cung ứng
               </h4>
               <p className="text-[10px] sm:text-[11px] text-gray-500">Đầy đủ chủng loại</p>
             </div>

@@ -283,7 +283,7 @@ export default function ContactClient({ siteInfo }: ContactClientProps) {
                 <div className="space-y-2 text-xs text-gray-600 pt-1">
                   <div className="flex items-center gap-2">
                     <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-                    <span>Sản xuất trực tiếp tại xưởng giá tận gốc</span>
+                    <span>Cung cấp & phân phối thiết bị mầm non chính hãng</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Truck className="w-4 h-4 text-blue-600 shrink-0" />
@@ -317,10 +317,10 @@ export default function ContactClient({ siteInfo }: ContactClientProps) {
               </div>
               <h2 className="text-xl md:text-2xl font-black text-white">
                 {hasOffice && hasFactory
-                  ? "Địa Chỉ Văn Phòng & Xưởng Sản Xuất"
+                  ? "Địa Chỉ Trụ Sở & Văn Phòng Giao Dịch"
                   : hasOffice
-                  ? "Địa Chỉ Văn Phòng Giao Dịch"
-                  : "Địa Chỉ Xưởng Sản Xuất"}
+                  ? "Địa Chỉ Trụ Sở Chính"
+                  : "Địa Chỉ Văn Phòng Giao Dịch"}
               </h2>
               <p className="text-xs md:text-sm text-slate-300">
                 {hasOffice && hasFactory
@@ -341,7 +341,7 @@ export default function ContactClient({ siteInfo }: ContactClientProps) {
                   }`}
                 >
                   <Building2 className="w-4 h-4" />
-                  <span>Văn Phòng Giao Dịch</span>
+                  <span>Trụ Sở Chính</span>
                 </button>
                 <button
                   onClick={() => setActiveTab("factory")}
@@ -351,8 +351,8 @@ export default function ContactClient({ siteInfo }: ContactClientProps) {
                       : "text-slate-300 hover:text-white hover:bg-slate-700/50"
                   }`}
                 >
-                  <Factory className="w-4 h-4" />
-                  <span>Xưởng Sản Xuất</span>
+                  <Building2 className="w-4 h-4" />
+                  <span>Văn Phòng Giao Dịch (VPGD)</span>
                 </button>
               </div>
             )}
@@ -363,17 +363,13 @@ export default function ContactClient({ siteInfo }: ContactClientProps) {
             <div className="bg-red-50/60 p-4 md:px-8 border-b border-red-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
               <div className="flex items-start gap-3">
                 <div className="w-9 h-9 rounded-xl bg-[#c8102e] text-white flex items-center justify-center shrink-0 mt-0.5">
-                  {activeTab === "office" ? (
-                    <Building2 className="w-5 h-5" />
-                  ) : (
-                    <Factory className="w-5 h-5" />
-                  )}
+                  <Building2 className="w-5 h-5" />
                 </div>
                 <div>
                   <span className="text-[11px] font-extrabold text-[#c8102e] uppercase tracking-wider block">
                     {activeTab === "office"
-                      ? "Trụ sở & Văn phòng làm việc"
-                      : "Xưởng trực tiếp sản xuất thiết bị"}
+                      ? "Trụ sở chính & Địa chỉ ĐKKD"
+                      : "Văn phòng giao dịch Phúc An Minh"}
                   </span>
                   <p className="text-sm font-bold text-gray-900 leading-snug">
                     {currentMapAddress}

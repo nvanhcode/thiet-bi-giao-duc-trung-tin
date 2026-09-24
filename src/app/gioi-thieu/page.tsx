@@ -29,10 +29,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const about = siteInfo.aboutSection;
 
   return {
-    title: `Giới Thiệu | ${siteInfo.siteName || "TRUNG TÍN"} - ${siteInfo.siteSubName || "Đồ Chơi & Thiết Bị Mầm Non"}`,
+    title: `Giới Thiệu | ${siteInfo.siteName || "PHÚC AN MINH"} - ${siteInfo.siteSubName || "Đồ Chơi & Thiết Bị Giáo Dục Mầm Non"}`,
     description:
       about?.description1 ||
-      `Giới thiệu về Công ty TNHH Thương Mại & Sản Xuất Trung Tín - Đơn vị hàng đầu sản xuất & phân phối đồ chơi mầm non, thiết bị trường học đạt chuẩn Bộ GD&ĐT.`,
+      `Giới thiệu về Công ty TNHH Thương Mại Công Nghệ Phúc An Minh - Đơn vị hàng đầu phân phối & cung cấp đồ chơi mầm non, thiết bị trường học đạt chuẩn Bộ GD&ĐT.`,
     openGraph: {
       title: `Giới Thiệu | ${siteInfo.siteName} - ${siteInfo.siteSubName}`,
       description: about?.description1,
@@ -48,28 +48,28 @@ export default async function AboutPage() {
   ]);
 
   const about = {
-    heroTitle: "VỀ CÔNG TY THIẾT BỊ GIÁO DỤC TRUNG TÍN",
+    heroTitle: "VỀ CÔNG TY TNHH THƯƠNG MẠI CÔNG NGHỆ PHÚC AN MINH",
     heroSubtitle:
-      "Đơn vị uy tín hàng đầu sản xuất & phân phối đồ chơi mầm non, thiết bị trường học, thi công khu vui chơi trọn gói toàn quốc.",
+      "Đơn vị uy tín hàng đầu cung cấp & phân phối đồ chơi mầm non, thiết bị trường học, thi công khu vui chơi trọn gói toàn quốc.",
     heroImage:
       "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
-    storyTitle: "Câu Chuyện & Năng Lực Sản Xuất",
+    storyTitle: "Câu Chuyện & Năng Lực Cung Cấp",
     storyContent:
-      "Công ty TNHH Thương Mại & Sản Xuất Trung Tín là đơn vị chuyên nghiệp hàng đầu trong lĩnh vực sản xuất và cung cấp thiết bị mầm non, đồ chơi vận động ngoài trời, bàn ghế phòng học và thiết bị nuôi dưỡng đạt chuẩn quy định của Bộ Giáo dục & Đào tạo.\n\nSở hữu xưởng sản xuất quy mô lớn tại Hà Nội với quy trình gia công cơ khí, cắt sấy gỗ và sơn tĩnh điện hiện đại, Trung Tín đáp ứng mọi tiêu chuẩn khắt khe về độ an toàn, thẩm mỹ và độ bền cho các trường mầm non công lập, tư thục, khu vui chơi giải trí và các dự án quy mô toàn quốc.\n\nChúng tôi không ngừng đổi mới mẫu mã, tối ưu quy trình sản xuất trực tiếp để mang lại giá tận gốc nhà xưởng, tư vấn thiết kế 3D phối cảnh miễn phí và đồng hành bảo hành dài hạn cùng nhà trường.",
+      "Công ty TNHH Thương Mại Công Nghệ Phúc An Minh là đơn vị chuyên nghiệp hàng đầu trong lĩnh vực cung cấp và phân phối thiết bị mầm non, đồ chơi vận động ngoài trời, bàn ghế phòng học và thiết bị nuôi dưỡng đạt chuẩn quy định của Bộ Giáo dục & Đào tạo.\n\nVới đội ngũ tư vấn chuyên sâu và mạng lưới đối tác cung ứng uy tín, Phúc An Minh đáp ứng mọi tiêu chuẩn khắt khe về độ an toàn, thẩm mỹ và độ bền cho các trường mầm non công lập, tư thục, khu vui chơi giải trí và các dự án quy mô toàn quốc.\n\nChúng tôi không ngừng cập nhật các mẫu mã mới nhất, tối ưu chi phí cung ứng để mang lại mức giá tốt nhất, tư vấn thiết kế 3D phối cảnh miễn phí và đồng hành bảo hành dài hạn cùng nhà trường.",
     storyImage:
       "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1200&auto=format&fit=crop",
     visionTitle: "Tầm Nhìn Chiến Lược",
     visionContent:
-      "Trở thành thương hiệu hàng đầu Việt Nam trong sản xuất thiết bị giáo dục mầm non và thi công khu vui chơi trẻ em, mang lại không gian học tập và vui chơi chuẩn mực, an toàn cho thế hệ tương lai.",
+      "Trở thành thương hiệu hàng đầu Việt Nam trong phân phối thiết bị giáo dục mầm non và thi công khu vui chơi trẻ em, mang lại không gian học tập và vui chơi chuẩn mực, an toàn cho thế hệ tương lai.",
     missionTitle: "Sứ Mệnh Cao Cả",
     missionContent:
-      "Đồng hành cùng ngành giáo dục mầm non Việt Nam bằng việc cung cấp các sản phẩm thiết bị, đồ chơi sáng tạo, an toàn tuyệt đối và giá thành cạnh tranh trực tiếp từ xưởng sản xuất.",
+      "Đồng hành cùng ngành giáo dục mầm non Việt Nam bằng việc cung cấp các sản phẩm thiết bị, đồ chơi sáng tạo, an toàn tuyệt đối và giá thành cạnh tranh tốt nhất.",
     coreValuesTitle: "Giá Trị Cốt Lõi",
     coreValues: [
       {
         title: "Uy Tín & Tiến Độ",
         description:
-          "Cam kết đúng tiến độ giao hàng, thi công chuẩn kỹ thuật và trách nhiệm bảo hành lâu dài.",
+          "Cam kết đúng tiến độ giao hàng, tư vấn chuẩn kỹ thuật và trách nhiệm bảo hành lâu dài.",
       },
       {
         title: "An Toàn Tuyệt Đối",
@@ -77,9 +77,9 @@ export default async function AboutPage() {
           "Nguyên vật liệu gỗ tự nhiên, nhựa nguyên sinh, sơn không độc hại đạt chuẩn Bộ GD&ĐT.",
       },
       {
-        title: "Giá Tận Gốc Xưởng",
+        title: "Tối Ưu Chi Phí",
         description:
-          "Sản xuất trực tiếp tại xưởng không qua trung gian, tối ưu ngân sách cho nhà trường & đại lý.",
+          "Phân phối trực tiếp tối ưu ngân sách cho nhà trường & đại lý.",
       },
       {
         title: "Đổi Mới & Sáng Tạo",
@@ -87,12 +87,12 @@ export default async function AboutPage() {
           "Liên tục cập nhật mẫu mã mới, thiết kế 3D hiện đại tạo cảm hứng vui học cho trẻ em.",
       },
     ],
-    commitmentsTitle: "Cam Kết Chất Lượng Từ Trung Tín",
+    commitmentsTitle: "Cam Kết Chất Lượng Từ Phúc An Minh",
     commitments: [
       {
         title: "100% Đạt chuẩn quy định Bộ GD&ĐT",
         description:
-          "Tất cả sản phẩm đều được sản xuất và kiểm định theo tiêu chuẩn thiết bị mầm non hiện hành.",
+          "Tất cả sản phẩm đều được kiểm định theo tiêu chuẩn thiết bị mầm non hiện hành.",
       },
       {
         title: "Bảo hành chính hãng 12 - 24 tháng",
@@ -110,7 +110,7 @@ export default async function AboutPage() {
           "Đội ngũ kỹ thuật lắp đặt tận nơi chuyên nghiệp trên 63 tỉnh thành cả nước.",
       },
     ],
-    galleryTitle: "Hình Ảnh Xưởng Sản Xuất & Dự Án Đã Thi Công",
+    galleryTitle: "Hình Ảnh Dự Án & Công Trình Đã Thi Công",
     galleryImages: [
       "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
       "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1200&auto=format&fit=crop",
@@ -127,7 +127,7 @@ export default async function AboutPage() {
     description: about.heroSubtitle,
     publisher: {
       "@type": "Organization",
-      name: "CÔNG TY TNHH THƯƠNG MẠI & SẢN XUẤT TRUNG TÍN",
+      name: "CÔNG TY TNHH THƯƠNG MẠI CÔNG NGHỆ PHÚC AN MINH",
       telephone: siteInfo.hotline,
       email: siteInfo.email,
       address: siteInfo.address,
@@ -174,11 +174,11 @@ export default async function AboutPage() {
         <div className="max-w-7xl mx-auto px-4 relative z-10 space-y-4">
           <div className="inline-flex items-center gap-2 bg-[#c8102e] text-white text-xs font-extrabold px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow-md">
             <Sparkles className="w-4 h-4" />
-            <span>Xưởng Sản Xuất Trực Tiếp Trung Tín</span>
+            <span>Phúc An Minh - Thiết Bị Giáo Dục & Đồ Chơi Mầm Non</span>
           </div>
 
           <h1 className="text-3xl md:text-5xl font-black text-white tracking-tight max-w-4xl leading-tight">
-            {about.heroTitle || "VỀ CÔNG TY THIẾT BỊ GIÁO DỤC TRUNG TÍN"}
+            {about.heroTitle || "VỀ CÔNG TY TNHH THƯƠNG MẠI CÔNG NGHỆ PHÚC AN MINH"}
           </h1>
 
           <p className="text-sm md:text-base text-slate-300 max-w-3xl leading-relaxed">
@@ -198,7 +198,7 @@ export default async function AboutPage() {
               className="bg-white/10 hover:bg-white/20 text-white border border-white/20 font-bold text-xs md:text-sm px-6 py-3 rounded-full flex items-center gap-2 transition-all"
             >
               <PhoneCall className="w-4 h-4 text-red-400" />
-              <span>Liên hệ & Báo giá xưởng</span>
+              <span>Liên hệ & Nhận báo giá</span>
             </Link>
           </div>
         </div>
@@ -206,18 +206,18 @@ export default async function AboutPage() {
 
       {/* Main Content Body */}
       <main className="flex-1 py-12 space-y-16">
-        {/* Section 1: Company Story & Production Capability */}
+        {/* Section 1: Company Story & Capability */}
         <section className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left Content */}
             <div className="lg:col-span-7 space-y-5">
               <div className="inline-flex items-center gap-2 px-3 py-1 bg-red-50 text-[#c8102e] font-bold text-xs rounded-full uppercase tracking-wider border border-red-100">
-                <Factory className="w-3.5 h-3.5" />
+                <Building2 className="w-3.5 h-3.5" />
                 <span>Năng Lực & Uy Tín Thương Hiệu</span>
               </div>
 
               <h2 className="text-2xl md:text-4xl font-black text-gray-900 leading-tight">
-                {about.storyTitle || "Câu Chuyện & Năng Lực Sản Xuất"}
+                {about.storyTitle || "Câu Chuyện & Năng Lực Cung Cấp"}
               </h2>
 
               <div className="space-y-4 text-gray-700 text-sm md:text-base leading-relaxed">
@@ -248,10 +248,10 @@ export default async function AboutPage() {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-gray-900">
-                      Giá Gốc Nhà Xưởng
+                      Giá Thành Tốt Nhất
                     </h4>
                     <p className="text-[11px] text-gray-500">
-                      Sản xuất trực tiếp không qua trung gian
+                      Tối ưu chi phí cho nhà trường & dự án
                     </p>
                   </div>
                 </div>
@@ -266,16 +266,16 @@ export default async function AboutPage() {
                     about.storyImage ||
                     "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1200&auto=format&fit=crop"
                   }
-                  alt={about.storyTitle || "Xưởng sản xuất Trung Tín"}
+                  alt={about.storyTitle || "Công ty Phúc An Minh"}
                   className="w-full h-[400px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent" />
                 <div className="absolute bottom-6 left-6 right-6 text-white space-y-1">
                   <span className="text-xs font-bold text-amber-300 uppercase tracking-wider block">
-                    Xưởng Sản Xuất Trung Tín Hà Nội
+                    Công ty TNHH Thương Mại Công Nghệ Phúc An Minh
                   </span>
                   <p className="text-sm font-semibold text-gray-200">
-                    Chuyên gia công bàn ghế, xích đu, liên hoàn cầu trượt & thiết
+                    Chuyên cung cấp bàn ghế, xích đu, liên hoàn cầu trượt & thiết
                     bị bếp mầm non
                   </p>
                 </div>
