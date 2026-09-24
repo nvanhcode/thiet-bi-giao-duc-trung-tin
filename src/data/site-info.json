@@ -25,19 +25,19 @@
       "id": "slide-1",
       "title": "THIẾT BỊ & ĐỒ CHƠI MẦM NON CAO CẤP",
       "subtitle": "Chất lượng vượt trội - An toàn tuyệt đối cho trẻ em",
-      "image": "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop"
+      "image": "/banners/banner-1.jpg"
     },
     {
       "id": "slide-2",
       "title": "PHÂN PHỐI THIẾT BỊ MẦM NON PHÚC AN MINH",
       "subtitle": "Đạt chuẩn Bộ Giáo Dục & Đào Tạo - Giá thành cạnh tranh",
-      "image": "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=1200&auto=format&fit=crop"
+      "image": "/banners/banner-2.jpg"
     },
     {
       "id": "slide-3",
       "title": "THI CÔNG KHU VUI CHƠI TRỌN GÓI TOÀN QUỐC",
       "subtitle": "Tư vấn thiết kế 3D miễn phí & Bảo hành lâu dài",
-      "image": "https://images.unsplash.com/photo-1545558014-8692077e9b5c?q=80&w=1200&auto=format&fit=crop"
+      "image": "/banners/banner-3.jpg"
     }
   ],
   "aboutSection": {
