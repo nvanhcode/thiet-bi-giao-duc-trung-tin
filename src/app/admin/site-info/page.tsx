@@ -19,6 +19,7 @@ import {
   Building2,
   Phone,
   MapPin,
+  Clock,
   Share2,
   FileCheck,
   RefreshCw,
@@ -954,6 +955,55 @@ export default function SiteInfoAdminPage() {
                   value={formData.factoryAddress}
                   onChange={(e) => handleChange("factoryAddress", e.target.value)}
                   className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#c8102e] outline-none"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Working Hours & Contact Page Description */}
+          <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-4">
+            <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
+              <Clock className="w-5 h-5 text-[#c8102e]" />
+              <h3>Thời Gian Làm Việc & Mô Tả Trang Liên Hệ</h3>
+            </div>
+
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">
+                  Mô tả đầu trang liên hệ (Header Banner Description)
+                </label>
+                <textarea
+                  rows={2}
+                  value={formData.contactDescription || ""}
+                  onChange={(e) => handleChange("contactDescription", e.target.value)}
+                  className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#c8102e] outline-none"
+                  placeholder="Công ty TNHH Thương Mại & Sản Xuất Trung Tín sẵn sàng hỗ trợ tư vấn..."
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">
+                  Khung giờ làm việc (Hiển thị ở ô Thời gian hỗ trợ)
+                </label>
+                <input
+                  type="text"
+                  value={formData.workingHours || ""}
+                  onChange={(e) => handleChange("workingHours", e.target.value)}
+                  className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#c8102e] outline-none"
+                  placeholder="07:30 - 18:00 (Từ Thứ 2 đến Chủ Nhật)"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-gray-700 mb-1">
+                  Mô tả thêm về thời gian làm việc & tư vấn
+                </label>
+                <textarea
+                  rows={2}
+                  value={formData.workingHoursDescription || ""}
+                  onChange={(e) => handleChange("workingHoursDescription", e.target.value)}
+                  className="w-full px-3.5 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-[#c8102e] outline-none"
+                  placeholder="Đội ngũ kỹ thuật & tư vấn luôn sẵn sàng tiếp nhận yêu cầu báo giá..."
                 />
               </div>
             </div>

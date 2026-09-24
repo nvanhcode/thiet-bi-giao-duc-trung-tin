@@ -52,6 +52,9 @@ export interface SiteInfo {
   primaryColor?: string;
   faviconUrl?: string;
   ogImageUrl?: string;
+  workingHours?: string;
+  workingHoursDescription?: string;
+  contactDescription?: string;
   bannerSlides?: BannerSlide[];
   aboutSection?: AboutSectionConfig;
 }
@@ -127,6 +130,9 @@ export const defaultSiteInfo: SiteInfo = {
   primaryColor: "#c8102e",
   faviconUrl: "/favicon.ico",
   ogImageUrl: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
+  workingHours: "07:30 - 18:00 (Từ Thứ 2 đến Chủ Nhật)",
+  workingHoursDescription: "Đội ngũ kỹ thuật & tư vấn luôn sẵn sàng tiếp nhận yêu cầu báo giá xưởng và khảo sát công trình.",
+  contactDescription: "Công ty TNHH Thương Mại & Sản Xuất Trung Tín sẵn sàng hỗ trợ tư vấn thiết kế, gửi catalog 260+ sản phẩm mầm non và báo giá trực tiếp từ xưởng sản xuất cho quý trường, đại lý và chủ đầu tư.",
   bannerSlides: defaultBannerSlides,
   aboutSection: defaultAboutSection,
 };
