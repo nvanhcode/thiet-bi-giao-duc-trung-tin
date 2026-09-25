@@ -5,12 +5,15 @@ import Link from "next/link";
 import { Product } from "@/types/product";
 import { FilePlus } from "lucide-react";
 import { DEFAULT_IMAGE, handleImageError } from "@/lib/imageFallback";
+import { useQuote } from "@/context/QuoteContext";
 
 interface ProductCardProps {
   product: Product;
 }
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const { addToQuote } = useQuote();
+
   const formatPrice = (val?: number | string | null) => {
     if (!val || val === 0 || val === "Liên hệ") return "Liên hệ";
     if (typeof val === "string") return val;
@@ -73,7 +76,7 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           {/* Add to Quote Button */}
           <button
-            onClick={() => alert(`Đã thêm "${titleText}" vào danh sách báo giá!`)}
+            onClick={() => addToQuote(product)}
             className="w-full py-1.5 px-2 sm:px-3 border border-[#c8102e] text-[#c8102e] hover:bg-[#c8102e] hover:text-white rounded text-[11px] sm:text-xs font-bold transition-colors flex items-center justify-center gap-1 cursor-pointer"
           >
             <FilePlus className="w-3.5 h-3.5" />

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Product } from "@/types/product";
 import { SiteInfo } from "@/types/site-info";
 import { DEFAULT_IMAGE, handleImageError } from "@/lib/imageFallback";
+import { useQuote } from "@/context/QuoteContext";
 import {
   FilePlus,
   PhoneCall,
@@ -21,6 +22,7 @@ interface ProductDetailClientProps {
 }
 
 export default function ProductDetailClient({ product, siteInfo }: ProductDetailClientProps) {
+  const { addToQuote } = useQuote();
   const rawImages = product.images && product.images.length > 0 ? product.images : [product.thumbnail];
   const images = rawImages.map((img) => img || DEFAULT_IMAGE);
   const [activeImage, setActiveImage] = useState(images[0] || DEFAULT_IMAGE);
@@ -154,7 +156,7 @@ export default function ProductDetailClient({ product, siteInfo }: ProductDetail
           <div className="space-y-3 pt-3 sm:pt-4 border-t border-gray-100">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
               <button
-                onClick={() => alert(`Đã thêm "${product.name}" vào danh sách báo giá!`)}
+                onClick={() => addToQuote(product)}
                 className="bg-[#c8102e] hover:bg-[#a00c24] text-white font-extrabold text-xs sm:text-sm py-3 px-5 sm:py-3.5 sm:px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg transition-all cursor-pointer uppercase"
               >
                 <FilePlus className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -251,7 +253,7 @@ export default function ProductDetailClient({ product, siteInfo }: ProductDetail
           <span>Gọi ngay</span>
         </a>
         <button
-          onClick={() => alert(`Đã thêm "${product.name}" vào danh sách báo giá!`)}
+          onClick={() => addToQuote(product)}
           className="flex-1 bg-[#c8102e] text-white font-extrabold text-xs py-2.5 px-3 rounded-lg flex items-center justify-center gap-1.5 uppercase shadow active:bg-[#a00c24]"
         >
           <FilePlus className="w-4 h-4" />

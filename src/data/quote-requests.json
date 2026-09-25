@@ -1,11 +1,135 @@
 [
   {
+    "id": "req_1790311492970",
+    "trackingCode": "BG-R4HURE",
+    "fullName": "Văn Anh Nguyễn",
+    "phone": "0987766645",
+    "email": "nguyenvananh3370@gmail.com",
+    "customerType": "mam-non",
+    "city": "hanoi",
+    "note": "",
+    "items": [
+      {
+        "id": "prod-bo-tau-hoa-5-khoi-tt-8",
+        "name": "Bộ tàu hỏa 5 khối",
+        "code": "TT-8",
+        "slug": "bo-tau-hoa-5-khoi-tt-8",
+        "image": "/products/catalog/cat_xlsx_img_49_9.jpg",
+        "price": "Liên hệ",
+        "oldPrice": 2300000,
+        "quantity": 1,
+        "summary": "Bộ tàu hỏa 5 khối (Mã TT-8) sản xuất và phân phối chính hãng bởi Công ty Phúc An Minh, đạt tiêu chuẩn an toàn mầm non.",
+        "description": "<p><strong>Bộ tàu hỏa 5 khối</strong> (Mã sản phẩm: <strong>TT-8</strong>) là sản phẩm thiết bị mầm non chất lượng cao được thiết kế và sản xuất theo quy chuẩn kỹ thuật trường mầm non.</p><h3>Thông số & Đặc điểm kỹ thuật:</h3><p>Kích thước: D430 x S30 x C115cm - Vật liệu: Bằng gỗ cao su / thông đã qua xử lý chống ẩm mốc, mối mọt, không cong vênh, hậu bằng alu loại vật liệu chống ăn mòn. Sản phẩm mang tính thẩm mỹ và giáo dục cao trong các tiết học của trẻ.</p><h3>Đặc điểm nổi bật:</h3><ul><li><strong>Chất liệu an toàn:</strong> Sử dụng vật liệu đã qua xử lý chống mối mọt, nhựa nguyên sinh LDPE không độc hại, sơn tĩnh điện độ bền cao.</li><li><strong>Kiểu dáng chuẩn mầm non:</strong> Đáp ứng đầy đủ quy định an toàn và phát triển thể chất, trí tuệ cho trẻ em.</li><li><strong>Ứng dụng đa dạng:</strong> Thích hợp trang bị cho trường mầm non, nhóm trẻ độc lập, khu vui chơi và gia đình.</li></ul>",
+        "specifications": [
+          {
+            "key": "Kích thước",
+            "value": "D430 x S30 x C115cm - Vật liệu: Bằng gỗ cao su / thông đã qua xử lý chống ẩm mốc, mối mọt, không cong vênh, hậu bằng alu loại vật liệu chống ăn mòn"
+          },
+          {
+            "key": "Mã sản phẩm",
+            "value": "TT-8"
+          },
+          {
+            "key": "Chất liệu",
+            "value": "Gỗ tự nhiên / Thép sơn tĩnh điện / Nhựa LDPE an toàn mầm non"
+          },
+          {
+            "key": "Xuất xứ",
+            "value": "Phân phối chính hãng bởi Phúc An Minh"
+          },
+          {
+            "key": "Bảo hành",
+            "value": "12 - 24 tháng chính hãng"
+          }
+        ],
+        "origin": "Phân phối chính hãng Phúc An Minh"
+      },
+      {
+        "id": "prod-gia-do-choi-5-khoi-ngoi-nha-ta326",
+        "name": "Giá đồ chơi 5 khối ngôi nhà",
+        "code": "TA326",
+        "slug": "gia-do-choi-5-khoi-ngoi-nha-ta326",
+        "image": "/products/catalog/cat_xlsx_img_51_11.jpg",
+        "price": "Liên hệ",
+        "oldPrice": 1500000,
+        "quantity": 1,
+        "summary": "Giá đồ chơi 5 khối ngôi nhà (Mã TA326) sản xuất và phân phối chính hãng bởi Công ty Phúc An Minh, đạt tiêu chuẩn an toàn mầm non.",
+        "description": "<p><strong>Giá đồ chơi 5 khối ngôi nhà</strong> (Mã sản phẩm: <strong>TA326</strong>) là sản phẩm thiết bị mầm non chất lượng cao được thiết kế và sản xuất theo quy chuẩn kỹ thuật trường mầm non.</p><h3>Thông số & Đặc điểm kỹ thuật:</h3><p>Kích thước: D390 x S30 x C120cm - Vật liệu: Bằng gỗ cao su / thông đã qua xử lý chống ẩm mốc, mối mọt, không cong vênh, hậu bằng alu loại vật liệu chống ăn mòn. Sản phẩm mang tính thẩm mỹ và giáo dục cao trong các tiết học của trẻ.</p><h3>Đặc điểm nổi bật:</h3><ul><li><strong>Chất liệu an toàn:</strong> Sử dụng vật liệu đã qua xử lý chống mối mọt, nhựa nguyên sinh LDPE không độc hại, sơn tĩnh điện độ bền cao.</li><li><strong>Kiểu dáng chuẩn mầm non:</strong> Đáp ứng đầy đủ quy định an toàn và phát triển thể chất, trí tuệ cho trẻ em.</li><li><strong>Ứng dụng đa dạng:</strong> Thích hợp trang bị cho trường mầm non, nhóm trẻ độc lập, khu vui chơi và gia đình.</li></ul>",
+        "specifications": [
+          {
+            "key": "Kích thước",
+            "value": "D390 x S30 x C120cm - Vật liệu: Bằng gỗ cao su / thông đã qua xử lý chống ẩm mốc, mối mọt, không cong vênh, hậu bằng alu loại vật liệu chống ăn mòn"
+          },
+          {
+            "key": "Mã sản phẩm",
+            "value": "TA326"
+          },
+          {
+            "key": "Chất liệu",
+            "value": "Gỗ tự nhiên / Thép sơn tĩnh điện / Nhựa LDPE an toàn mầm non"
+          },
+          {
+            "key": "Xuất xứ",
+            "value": "Phân phối chính hãng bởi Phúc An Minh"
+          },
+          {
+            "key": "Bảo hành",
+            "value": "12 - 24 tháng chính hãng"
+          }
+        ],
+        "origin": "Phân phối chính hãng Phúc An Minh"
+      },
+      {
+        "id": "prod-gia-do-choi-4-khoi-hinh-co-vom-ta328",
+        "name": "Gía đồ chơi 4 khối hình có vòm",
+        "code": "TA328",
+        "slug": "gia-do-choi-4-khoi-hinh-co-vom-ta328",
+        "image": "/products/catalog/cat_xlsx_img_53_13.jpg",
+        "price": "Liên hệ",
+        "oldPrice": 1700000,
+        "quantity": 1,
+        "summary": "Gía đồ chơi 4 khối hình có vòm (Mã TA328) sản xuất và phân phối chính hãng bởi Công ty Phúc An Minh, đạt tiêu chuẩn an toàn mầm non.",
+        "description": "<p><strong>Gía đồ chơi 4 khối hình có vòm</strong> (Mã sản phẩm: <strong>TA328</strong>) là sản phẩm thiết bị mầm non chất lượng cao được thiết kế và sản xuất theo quy chuẩn kỹ thuật trường mầm non.</p><h3>Thông số & Đặc điểm kỹ thuật:</h3><p>Kích thước: D360 x S30 x C110cm - Vật liệu: Bằng gỗ cao su / thông đã qua xử lý chống ẩm mốc, mối mọt, không cong vênh, đảm bảo tính thẩm mỹ bền đẹp của sản phẩm. Sản phẩm mang tính thẩm mỹ và giáo dục cao trong các tiết học của trẻ.</p><h3>Đặc điểm nổi bật:</h3><ul><li><strong>Chất liệu an toàn:</strong> Sử dụng vật liệu đã qua xử lý chống mối mọt, nhựa nguyên sinh LDPE không độc hại, sơn tĩnh điện độ bền cao.</li><li><strong>Kiểu dáng chuẩn mầm non:</strong> Đáp ứng đầy đủ quy định an toàn và phát triển thể chất, trí tuệ cho trẻ em.</li><li><strong>Ứng dụng đa dạng:</strong> Thích hợp trang bị cho trường mầm non, nhóm trẻ độc lập, khu vui chơi và gia đình.</li></ul>",
+        "specifications": [
+          {
+            "key": "Kích thước",
+            "value": "D360 x S30 x C110cm - Vật liệu: Bằng gỗ cao su / thông đã qua xử lý chống ẩm mốc, mối mọt, không cong vênh, đảm bảo tính thẩm mỹ bền đẹp của sản phẩm"
+          },
+          {
+            "key": "Mã sản phẩm",
+            "value": "TA328"
+          },
+          {
+            "key": "Chất liệu",
+            "value": "Gỗ tự nhiên / Thép sơn tĩnh điện / Nhựa LDPE an toàn mầm non"
+          },
+          {
+            "key": "Xuất xứ",
+            "value": "Phân phối chính hãng bởi Phúc An Minh"
+          },
+          {
+            "key": "Bảo hành",
+            "value": "12 - 24 tháng chính hãng"
+          }
+        ],
+        "origin": "Phân phối chính hãng Phúc An Minh"
+      }
+    ],
+    "status": "nguoi-dung-tu-choi",
+    "adminNote": "",
+    "createdAt": "2026-09-25T04:44:52.970Z",
+    "updatedAt": "2026-09-25T04:47:23.588Z"
+  },
+  {
+    "id": "req_1790147411649",
+    "trackingCode": "BG-100000",
     "fullName": "Nguyễn Văn Anh",
     "phone": "0987745545",
+    "email": "",
     "customerType": "du-an",
     "city": "haiduong",
     "note": "Test",
-    "id": "req_1790147411649",
+    "items": [],
     "status": "chua-xu-ly",
     "adminNote": "",
     "createdAt": "2026-09-23T07:10:11.649Z",
@@ -13,11 +137,14 @@
   },
   {
     "id": "req_1712345678001",
+    "trackingCode": "BG-100001",
     "fullName": "Nguyễn Văn An",
     "phone": "0987654321",
+    "email": "",
     "customerType": "mam-non",
     "city": "hanoi",
     "note": "Cần tư vấn thiết bị đồ chơi ngoài trời cho trường mầm non diện tích 150m2",
+    "items": [],
     "status": "chua-xu-ly",
     "adminNote": "",
     "createdAt": "2026-09-23T08:30:00.000Z",
@@ -25,11 +152,14 @@
   },
   {
     "id": "req_1712345678002",
+    "trackingCode": "BG-100002",
     "fullName": "Trần Thị Mai",
     "phone": "0912345678",
+    "email": "",
     "customerType": "du-an",
     "city": "hcm",
     "note": "Báo giá trọn gói thiết bị khu vui chơi trẻ em khu đô thị",
+    "items": [],
     "status": "dang-xu-ly",
     "adminNote": "Đã gửi bảng báo giá sơ bộ qua Zalo ngày 23/09",
     "createdAt": "2026-09-22T14:15:00.000Z",

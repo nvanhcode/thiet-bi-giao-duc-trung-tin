@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { getSiteInfo } from "@/lib/getSiteInfo";
+import { QuoteProvider } from "@/context/QuoteContext";
 import "./globals.css";
 
 const inter = Inter({
@@ -48,7 +49,7 @@ export default async function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col bg-gray-50 text-gray-900 font-sans">
-        {children}
+        <QuoteProvider>{children}</QuoteProvider>
       </body>
     </html>
   );

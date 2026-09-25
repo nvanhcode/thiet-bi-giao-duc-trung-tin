@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { SiteInfo, defaultSiteInfo } from "@/types/site-info";
 import { Category } from "@/types/category";
+import { useQuote } from "@/context/QuoteContext";
 import {
   Search,
   PhoneCall,
@@ -25,6 +26,7 @@ interface HeaderProps {
 
 export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: HeaderProps) {
   const pathname = usePathname();
+  const { itemCount } = useQuote();
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedCategoryId, setExpandedCategoryId] = useState<string | null>(null);
@@ -136,12 +138,12 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
             <div className="relative w-8 h-8 rounded-full bg-red-50 text-[#c8102e] flex items-center justify-center">
               <FileText className="w-4 h-4" />
               <span className="absolute -top-1 -right-1 bg-[#c8102e] text-white text-[10px] font-bold w-4 h-4 rounded-full flex items-center justify-center">
-                0
+                {itemCount}
               </span>
             </div>
             <div className="hidden xl:block">
               <div className="text-[10px] text-gray-400">Danh sách báo giá</div>
-              <div className="font-bold text-gray-800">0 sản phẩm</div>
+              <div className="font-bold text-gray-800">{itemCount} sản phẩm</div>
             </div>
           </Link>
 

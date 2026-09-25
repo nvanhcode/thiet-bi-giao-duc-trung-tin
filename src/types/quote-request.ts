@@ -1,20 +1,57 @@
-export type QuoteRequestStatus = "chua-xu-ly" | "dang-xu-ly" | "da-xu-ly" | "hoan-tat";
+import { ProductSpecification } from "./product";
+
+export type QuoteRequestStatus =
+  | "chua-xu-ly"
+  | "da-gui-bao-gia"
+  | "dang-cho-phan-hoi"
+  | "nguoi-dung-dong-y"
+  | "nguoi-dung-tu-choi"
+  | "dang-xu-ly"
+  | "da-xu-ly"
+  | "hoan-tat";
+
+export interface QuoteItem {
+  id: string;
+  name: string;
+  code?: string;
+  slug: string;
+  image?: string;
+  price?: number | string | null;
+  oldPrice?: number | null;
+  quantity: number;
+  categoryName?: string;
+  summary?: string;
+  description?: string;
+  specifications?: ProductSpecification[];
+  origin?: string;
+  investmentLevel?: string;
+  blockCount?: string;
+  slideType?: string;
+  feature?: string;
+}
 
 export interface QuoteRequest {
   id: string;
+  trackingCode: string;
   fullName: string;
   phone: string;
-  customerType: string;
-  city: string;
-  note: string;
+  email?: string;
+  customerType?: string;
+  city?: string;
+  note?: string;
+  items: QuoteItem[];
   status: QuoteRequestStatus;
-  adminNote: string;
+  adminNote?: string;
   createdAt: string;
   updatedAt: string;
 }
 
-export const statusLabels: Record<QuoteRequestStatus, string> = {
+export const statusLabels: Record<string, string> = {
   "chua-xu-ly": "Chưa xử lý",
+  "da-gui-bao-gia": "Đã gửi báo giá",
+  "dang-cho-phan-hoi": "Đang chờ phản hồi của người dùng",
+  "nguoi-dung-dong-y": "Người dùng đồng ý",
+  "nguoi-dung-tu-choi": "Người dùng từ chối",
   "dang-xu-ly": "Đang xử lý",
   "da-xu-ly": "Đã xử lý",
   "hoan-tat": "Hoàn tất",
