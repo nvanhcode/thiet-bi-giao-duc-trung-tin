@@ -65,6 +65,7 @@ export interface SiteInfo {
   siteName: string;
   siteSubName: string;
   logoText: string;
+  logoUrl?: string;
   hotline: string;
   landline: string;
   email: string;
@@ -176,6 +177,7 @@ export const defaultSiteInfo: SiteInfo = {
   siteName: "PHÚC AN MINH",
   siteSubName: "Đồ Chơi & Thiết Bị Giáo Dục Mầm Non",
   logoText: "PHÚC AN MINH",
+  logoUrl: "/logo.png",
   hotline: "0978 618 790",
   landline: "0982 402 681",
   email: "Phucanminhgroup@gmail.com",
@@ -189,8 +191,8 @@ export const defaultSiteInfo: SiteInfo = {
   mst: "0110733916",
   copyrightText: "Copyright 2026 © CÔNG TY TNHH THƯƠNG MẠI CÔNG NGHỆ PHÚC AN MINH - MST: 0110733916.",
   primaryColor: "#c8102e",
-  faviconUrl: "/favicon.ico",
-  ogImageUrl: "https://images.unsplash.com/photo-1596464716127-f2a82984de30?q=80&w=1200&auto=format&fit=crop",
+  faviconUrl: "/favicon.png",
+  ogImageUrl: "/og-image.jpg",
   workingHours: "07:30 - 18:00 (Từ Thứ 2 đến Chủ Nhật)",
   workingHoursDescription: "Đội ngũ tư vấn & chăm sóc khách hàng luôn sẵn sàng tiếp nhận yêu cầu báo giá và khảo sát công trình.",
   contactDescription: "Công ty TNHH Thương Mại Công Nghệ Phúc An Minh sẵn sàng hỗ trợ tư vấn thiết kế, gửi catalog 260+ sản phẩm mầm non và báo giá trực tiếp cho quý trường, đại lý và chủ đầu tư.",

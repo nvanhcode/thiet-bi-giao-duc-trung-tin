@@ -432,14 +432,22 @@ export default function SiteInfoAdminPage() {
             </div>
           </div>
 
-          {/* Favicon, Social Share Image (OpenGraph) & Primary Color */}
+          {/* Logo Image, Favicon, Social Share Image (OpenGraph) & Primary Color */}
           <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-6 space-y-6">
             <div className="flex items-center gap-2 text-base font-bold text-gray-800 border-b pb-3 border-gray-100">
               <ImageIcon className="w-5 h-5 text-[#c8102e]" />
-              <h3>Favicon, Hình Ảnh Chia Sẻ & Màu Sắc Chủ Đạo</h3>
+              <h3>Logo Thương Hiệu, Favicon & Hình Ảnh Chia Sẻ</h3>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <ImageUploadInput
+                label="Ảnh Logo Thương Hiệu (.png, .svg, .jpg)"
+                value={formData.logoUrl || ""}
+                onChange={(url) => handleChange("logoUrl", url)}
+                placeholder="/logo.png hoặc chọn file từ máy..."
+                previewAspect="square"
+              />
+
               <ImageUploadInput
                 label="Favicon Icon (.ico, .png, .svg)"
                 value={formData.faviconUrl || ""}
@@ -449,7 +457,7 @@ export default function SiteInfoAdminPage() {
               />
 
               <ImageUploadInput
-                label="Hình ảnh chia sẻ Link (OpenGraph Share Image 1200x630)"
+                label="Hình ảnh chia sẻ Link (OpenGraph 1200x630)"
                 value={formData.ogImageUrl || ""}
                 onChange={(url) => handleChange("ogImageUrl", url)}
                 placeholder="Dán link hoặc chọn file từ máy..."
