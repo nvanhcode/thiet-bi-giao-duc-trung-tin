@@ -5,7 +5,6 @@ import { SiteInfo, defaultSiteInfo } from "@/types/site-info";
 import { vietnamProvinces } from "@/types/quote-request";
 import {
   PhoneCall,
-  MessageCircle,
   Phone,
   X,
   Send,
@@ -77,20 +76,6 @@ export default function FloatingWidgets({ siteInfo = defaultSiteInfo }: Floating
     <>
       {/* Bottom Left Floating Icons */}
       <div className="fixed bottom-16 md:bottom-6 left-3 md:left-6 z-40 flex flex-col gap-2.5 sm:gap-3">
-        {/* Zalo Icon */}
-        <a
-          href={`https://zalo.me/${zaloPhone}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-600 hover:bg-blue-700 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-110 group relative"
-          title="Chat Zalo"
-        >
-          <span className="font-black text-[11px] md:text-xs">Zalo</span>
-          <span className="hidden md:block absolute left-14 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
-            Chat Zalo ({zaloPhone})
-          </span>
-        </a>
-
         {/* Phone Call Icon */}
         <a
           href={`tel:${rawPhone}`}
@@ -102,16 +87,29 @@ export default function FloatingWidgets({ siteInfo = defaultSiteInfo }: Floating
             Gọi ngay {siteInfo.hotline}
           </span>
         </a>
+        {/* Zalo Icon */}
+        <a
+          href={`https://zalo.me/${zaloPhone}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110 group relative overflow-hidden"
+          title="Chat Zalo"
+        >
+          <img src="/Icon_of_Zalo.svg" alt="Zalo" className="w-full h-full object-cover" />
+          <span className="hidden md:block absolute left-14 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+            Chat Zalo ({zaloPhone})
+          </span>
+        </a>
 
         {/* Messenger Icon */}
         <a
           href={siteInfo.facebookUrl || "https://m.me/"}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-blue-500 hover:bg-blue-600 text-white flex items-center justify-center shadow-lg transition-transform hover:scale-110 group relative"
+          className="w-10 h-10 md:w-12 md:h-12 rounded-full flex items-center justify-center shadow-lg transition-transform hover:scale-110 group relative overflow-hidden"
           title="Messenger"
         >
-          <MessageCircle className="w-5 h-5 md:w-6 md:h-6" />
+          <img src="/messenger.png" alt="Messenger" className="w-full h-full object-cover" />
           <span className="hidden md:block absolute left-14 bg-gray-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
             Chat Messenger
           </span>

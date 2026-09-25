@@ -335,7 +335,7 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
           </Link>
 
           {/* Cart */}
-          <Link
+          {/* <Link
             href="/gio-hang"
             className="flex items-center gap-1.5 hover:text-[#c8102e] transition-colors relative"
             title="Giỏ hàng"
@@ -350,7 +350,7 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
               <div className="text-[10px] text-gray-400">Giỏ hàng</div>
               <div className="font-bold text-gray-800">0 sản phẩm</div>
             </div>
-          </Link>
+          </Link> */}
 
           {/* Mobile Hamburger Toggle Button */}
           <button
@@ -418,8 +418,8 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
                         href={`/danh-muc/${parent.slug}`}
                         onMouseEnter={() => setActiveParentId(parent.id)}
                         className={`flex items-center justify-between p-3 text-xs font-bold transition-all ${isActive
-                            ? "bg-[#c8102e] text-white"
-                            : "text-gray-800 hover:bg-red-50 hover:text-[#c8102e]"
+                          ? "bg-[#c8102e] text-white"
+                          : "text-gray-800 hover:bg-red-50 hover:text-[#c8102e]"
                           }`}
                       >
                         <span className="truncate">{parent.name}</span>
@@ -484,15 +484,13 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`py-3.5 px-4 transition-colors whitespace-nowrap ${
-                    active
+                  className={`py-3.5 px-4 transition-colors whitespace-nowrap ${active
                       ? "bg-[#a00c24] text-white shadow-inner"
                       : "hover:bg-[#a00c24]"
-                  } ${
-                    item.isHighlight
+                    } ${item.isHighlight
                       ? "text-yellow-300" + (!active ? " animate-pulse" : "")
                       : ""
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </Link>
@@ -565,15 +563,14 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
                         key={item.href}
                         href={item.href}
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`p-2.5 rounded-lg transition-colors flex items-center gap-2 ${
-                          active
+                        className={`p-2.5 rounded-lg transition-colors flex items-center gap-2 ${active
                             ? item.isHighlight
                               ? "bg-[#c8102e] text-yellow-300 font-extrabold"
                               : "bg-[#c8102e] text-white font-extrabold"
                             : item.isHighlight
-                            ? "bg-yellow-50 text-amber-700 hover:bg-yellow-100"
-                            : "hover:bg-red-50 hover:text-[#c8102e] text-gray-800"
-                        }`}
+                              ? "bg-yellow-50 text-amber-700 hover:bg-yellow-100"
+                              : "hover:bg-red-50 hover:text-[#c8102e] text-gray-800"
+                          }`}
                       >
                         <span>{item.mobileLabel}</span>
                       </Link>
