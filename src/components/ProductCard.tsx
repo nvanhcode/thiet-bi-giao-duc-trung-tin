@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { Product } from "@/types/product";
 import { FilePlus } from "lucide-react";
+import { DEFAULT_IMAGE, handleImageError } from "@/lib/imageFallback";
 
 interface ProductCardProps {
   product: Product;
@@ -17,7 +18,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   };
 
   const productUrl = `/san-pham/${product.slug || product.id}`;
-  const imageSrc = product.thumbnail || (product.images && product.images[0]) || "";
+  const imageSrc = product.thumbnail || (product.images && product.images[0]) || DEFAULT_IMAGE;
   const titleText = product.name;
 
   return (
@@ -35,6 +36,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           src={imageSrc}
           alt={titleText}
           className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+          onError={handleImageError}
         />
       </Link>
 

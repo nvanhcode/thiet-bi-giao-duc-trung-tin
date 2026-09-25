@@ -15,9 +15,9 @@ export async function generateMetadata(): Promise<Metadata> {
     title: `${siteInfo.siteName || "PHÚC AN MINH"} - ${siteInfo.siteSubName || "Đồ Chơi & Thiết Bị Giáo Dục Mầm Non"}`,
     description: `Chuyên phân phối và cung cấp đồ chơi ngoài trời, nội thất mầm non, đồ chơi nhập khẩu, đồ chơi gỗ cho trường học và khu vui chơi. Hotline: ${siteInfo.hotline}`,
     icons: {
-      icon: siteInfo.faviconUrl || "/favicon.ico",
-      shortcut: siteInfo.faviconUrl || "/favicon.ico",
-      apple: siteInfo.faviconUrl || "/favicon.ico",
+      icon: siteInfo.faviconUrl || "/favicon.png",
+      shortcut: siteInfo.faviconUrl || "/favicon.png",
+      apple: siteInfo.faviconUrl || "/favicon.png",
     },
     openGraph: {
       title: `${siteInfo.siteName} - ${siteInfo.siteSubName}`,
@@ -38,6 +38,9 @@ export default async function RootLayout({
   return (
     <html lang="vi" className={`${inter.variable} h-full antialiased`}>
       <head>
+        <link rel="icon" href={siteInfo.faviconUrl || "/favicon.png"} />
+        <link rel="shortcut icon" href={siteInfo.faviconUrl || "/favicon.png"} />
+        <link rel="apple-touch-icon" href={siteInfo.faviconUrl || "/favicon.png"} />
         <style
           dangerouslySetInnerHTML={{
             __html: `:root { --primary: ${primaryColor}; --primary-hover: ${primaryColor}; }`,

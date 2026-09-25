@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Product } from "@/types/product";
 import { SiteInfo } from "@/types/site-info";
+import { DEFAULT_IMAGE, handleImageError } from "@/lib/imageFallback";
 import {
   FilePlus,
   PhoneCall,
@@ -20,8 +21,9 @@ interface ProductDetailClientProps {
 }
 
 export default function ProductDetailClient({ product, siteInfo }: ProductDetailClientProps) {
-  const images = product.images && product.images.length > 0 ? product.images : [product.thumbnail];
-  const [activeImage, setActiveImage] = useState(images[0]);
+  const rawImages = product.images && product.images.length > 0 ? product.images : [product.thumbnail];
+  const images = rawImages.map((img) => img || DEFAULT_IMAGE);
+  const [activeImage, setActiveImage] = useState(images[0] || DEFAULT_IMAGE);
 
   const rawPhone = (siteInfo.hotline || "0862888679").replace(/\s+/g, "");
   const zaloPhone = (siteInfo.zaloNumber || rawPhone).replace(/\s+/g, "");
@@ -43,6 +45,7 @@ export default function ProductDetailClient({ product, siteInfo }: ProductDetail
               src={activeImage}
               alt={product.name}
               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+              onError={handleImageError}
             />
             {product.discount && product.discount > 0 && (
               <span className="absolute top-4 left-4 bg-[#c8102e] text-white text-xs font-black px-3 py-1 rounded-full shadow">
@@ -62,7 +65,12 @@ export default function ProductDetailClient({ product, siteInfo }: ProductDetail
                     activeImage === img ? "border-[#c8102e] ring-2 ring-red-100" : "border-gray-200 hover:border-gray-400"
                   }`}
                 >
-                  <img src={img} alt={`${product.name} ${idx}`} className="w-full h-full object-contain" />
+                  <img
+                    src={img}
+                    alt={`${product.name} ${idx}`}
+                    className="w-full h-full object-contain"
+                    onError={handleImageError}
+                  />
                 </button>
               ))}
             </div>
