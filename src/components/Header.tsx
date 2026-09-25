@@ -104,6 +104,7 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
 
   const navItems = [
     { href: "/", label: "TRANG CHỦ", mobileLabel: "Trang chủ" },
+    { href: "/san-pham", label: "SẢN PHẨM", mobileLabel: "Sản phẩm" },
     { href: "/gioi-thieu", label: "GIỚI THIỆU", mobileLabel: "Giới thiệu" },
     { href: "/cong-trinh", label: "CÔNG TRÌNH", mobileLabel: "Công trình" },
     { href: "/tin-tuc", label: "TIN TỨC", mobileLabel: "Tin tức" },
