@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { SiteInfo, defaultSiteInfo, defaultBannerSlides } from "@/types/site-info";
 import { Category } from "@/types/category";
 import {
@@ -60,7 +61,16 @@ interface HeroProps {
 }
 
 export default function Hero({ siteInfo = defaultSiteInfo, categories }: HeroProps) {
+  const router = useRouter();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [heroQuery, setHeroQuery] = useState("");
+
+  const handleHeroSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (heroQuery.trim()) {
+      router.push(`/tim-kiem?q=${encodeURIComponent(heroQuery.trim())}`);
+    }
+  };
 
   // Filter root categories if categories prop provided
   const rootCats = categories
@@ -156,16 +166,18 @@ export default function Hero({ siteInfo = defaultSiteInfo, categories }: HeroPro
               <h2 className="text-base sm:text-xl md:text-2xl font-black text-amber-300 drop-shadow-md tracking-wider uppercase mb-2">
                 BẠN ĐANG CẦN MUA ĐỒ CHƠI, THIẾT BỊ GÌ?
               </h2>
-              <div className="max-w-md mx-auto relative hidden sm:block">
+              <form onSubmit={handleHeroSearch} className="max-w-md mx-auto relative hidden sm:block">
                 <input
                   type="text"
                   placeholder={`Đồ chơi ${siteInfo.siteName || "Phúc An Minh"} có tất cả...`}
+                  value={heroQuery}
+                  onChange={(e) => setHeroQuery(e.target.value)}
                   className="w-full py-2.5 px-4 pr-10 rounded-full bg-white/90 backdrop-blur text-sm text-gray-800 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c8102e] shadow-lg"
                 />
-                <button className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-[#c8102e] text-white rounded-full flex items-center justify-center hover:bg-[#a00c24]">
+                <button type="submit" className="absolute right-1.5 top-1.5 bottom-1.5 px-3 bg-[#c8102e] text-white rounded-full flex items-center justify-center hover:bg-[#a00c24] cursor-pointer">
                   <Search className="w-3.5 h-3.5" />
                 </button>
-              </div>
+              </form>
             </div>
 
             {/* Banner Middle Content */}

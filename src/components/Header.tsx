@@ -1,10 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { SiteInfo, defaultSiteInfo } from "@/types/site-info";
 import { Category } from "@/types/category";
+import { Product } from "@/types/product";
+import { Article } from "@/types/article";
+import { Project } from "@/types/project";
 import { useQuote } from "@/context/QuoteContext";
 import {
   Search,
@@ -17,6 +20,10 @@ import {
   ChevronRight,
   UserCog,
   Folder,
+  Package,
+  Newspaper,
+  Building2,
+  Loader2,
 } from "lucide-react";
 
 interface HeaderProps {
@@ -26,11 +33,66 @@ interface HeaderProps {
 
 export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: HeaderProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const { itemCount } = useQuote();
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [expandedCategoryId, setExpandedCategoryId] = useState<string | null>(null);
   const [activeParentId, setActiveParentId] = useState<string | null>(null);
+
+  // Search state
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<{
+    products: Product[];
+    articles: Article[];
+    projects: Project[];
+  }>({ products: [], articles: [], projects: [] });
+  const [isLoadingSuggestions, setIsLoadingSuggestions] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(e: MouseEvent) {
+      if (searchRef.current && !searchRef.current.contains(e.target as Node)) {
+        setShowSuggestions(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    if (searchQuery.trim().length < 2) {
+      setSuggestions({ products: [], articles: [], projects: [] });
+      setIsLoadingSuggestions(false);
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setIsLoadingSuggestions(true);
+      try {
+        const res = await fetch(`/api/search?q=${encodeURIComponent(searchQuery)}&limit=3`);
+        if (res.ok) {
+          const data = await res.json();
+          setSuggestions(data);
+        }
+      } catch (err) {
+        console.error("Fetch suggestions error:", err);
+      } finally {
+        setIsLoadingSuggestions(false);
+      }
+    }, 250);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  const handleSearchSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      setShowSuggestions(false);
+      router.push(`/tim-kiem?q=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
 
   const isActiveRoute = (href: string) => {
     if (!pathname) return false;
@@ -91,24 +153,149 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
         </Link>
 
         {/* Search Bar - Desktop */}
-        <div className="hidden md:flex flex-1 max-w-xl mx-2 lg:mx-4">
+        <div className="hidden md:flex flex-1 max-w-xl mx-2 lg:mx-4 relative" ref={searchRef}>
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSearchSubmit}
             className="w-full flex items-center border-2 border-[#c8102e] rounded-md overflow-hidden bg-white shadow-inner"
           >
             <input
               type="text"
               placeholder="Tìm kiếm sản phẩm: Xích đu, bập bênh, thú nhún..."
+              value={searchQuery}
+              onChange={(e) => {
+                setSearchQuery(e.target.value);
+                setShowSuggestions(true);
+              }}
+              onFocus={() => setShowSuggestions(true)}
               className="w-full px-3 py-2 text-xs md:text-sm focus:outline-none text-gray-700"
             />
+            {searchQuery && (
+              <button
+                type="button"
+                onClick={() => setSearchQuery("")}
+                className="px-2 text-gray-400 hover:text-gray-600 cursor-pointer"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            )}
             <button
               type="submit"
-              className="bg-[#c8102e] text-white px-4 lg:px-6 py-2 flex items-center gap-1 font-medium hover:bg-[#a00c24] transition-colors text-xs md:text-sm shrink-0"
+              className="bg-[#c8102e] text-white px-4 lg:px-6 py-2 flex items-center gap-1 font-medium hover:bg-[#a00c24] transition-colors text-xs md:text-sm shrink-0 cursor-pointer"
             >
               <Search className="w-4 h-4" />
               <span className="hidden sm:inline">Tìm kiếm</span>
             </button>
           </form>
+
+          {/* Desktop Search Suggestions Dropdown */}
+          {showSuggestions && searchQuery.trim().length >= 2 && (
+            <div className="absolute left-0 right-0 top-full mt-1 bg-white rounded-lg shadow-2xl border border-gray-200 z-50 overflow-hidden text-gray-800 animate-in fade-in duration-150 max-h-[80vh] overflow-y-auto">
+              {isLoadingSuggestions ? (
+                <div className="p-4 text-center text-xs text-gray-500 flex items-center justify-center gap-2">
+                  <Loader2 className="w-4 h-4 animate-spin text-[#c8102e]" />
+                  <span>Đang tìm kiếm...</span>
+                </div>
+              ) : (
+                <div className="divide-y divide-gray-100">
+                  {/* Products Section */}
+                  {suggestions.products.length > 0 && (
+                    <div className="p-2 space-y-1">
+                      <div className="px-2 py-1 text-[10px] font-extrabold text-gray-400 uppercase tracking-wider flex items-center gap-1">
+                        <Package className="w-3 h-3 text-[#c8102e]" />
+                        <span>Sản phẩm</span>
+                      </div>
+                      {suggestions.products.map((p) => (
+                        <Link
+                          key={p.id}
+                          href={`/san-pham/${p.slug || p.id}`}
+                          onClick={() => setShowSuggestions(false)}
+                          className="flex items-center gap-3 p-1.5 hover:bg-red-50/60 rounded-md transition-colors group"
+                        >
+                          <div className="w-9 h-9 rounded bg-gray-50 overflow-hidden shrink-0 border border-gray-100 p-0.5">
+                            <img src={p.thumbnail || (p.images && p.images[0]) || ""} alt={p.name} className="w-full h-full object-contain" />
+                          </div>
+                          <div className="flex-1 truncate">
+                            <h4 className="text-xs font-semibold text-gray-800 group-hover:text-[#c8102e] truncate">{p.name}</h4>
+                            <span className="text-[10px] font-bold text-[#c8102e]">
+                              {typeof p.price === "number" && p.price > 0 ? `${p.price.toLocaleString("vi-VN")}đ` : "Liên hệ"}
+                            </span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Articles Section */}
+                  {suggestions.articles.length > 0 && (
+                    <div className="p-2 space-y-1">
+                      <div className="px-2 py-1 text-[10px] font-extrabold text-gray-400 uppercase tracking-wider flex items-center gap-1">
+                        <Newspaper className="w-3 h-3 text-blue-600" />
+                        <span>Bài viết</span>
+                      </div>
+                      {suggestions.articles.map((a) => (
+                        <Link
+                          key={a.id}
+                          href={`/tin-tuc/${a.slug}`}
+                          onClick={() => setShowSuggestions(false)}
+                          className="flex items-center gap-3 p-1.5 hover:bg-blue-50/60 rounded-md transition-colors group"
+                        >
+                          <div className="w-9 h-9 rounded bg-gray-50 overflow-hidden shrink-0 border border-gray-100">
+                            <img src={a.image} alt={a.title} className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1 truncate">
+                            <h4 className="text-xs font-semibold text-gray-800 group-hover:text-blue-600 truncate">{a.title}</h4>
+                            <span className="text-[10px] text-gray-400 truncate block">{a.categoryName}</span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* Projects Section */}
+                  {suggestions.projects.length > 0 && (
+                    <div className="p-2 space-y-1">
+                      <div className="px-2 py-1 text-[10px] font-extrabold text-gray-400 uppercase tracking-wider flex items-center gap-1">
+                        <Building2 className="w-3 h-3 text-amber-600" />
+                        <span>Công trình</span>
+                      </div>
+                      {suggestions.projects.map((pj) => (
+                        <Link
+                          key={pj.id}
+                          href={`/cong-trinh/${pj.slug}`}
+                          onClick={() => setShowSuggestions(false)}
+                          className="flex items-center gap-3 p-1.5 hover:bg-amber-50/60 rounded-md transition-colors group"
+                        >
+                          <div className="w-9 h-9 rounded bg-gray-50 overflow-hidden shrink-0 border border-gray-100">
+                            <img src={pj.image} alt={pj.title} className="w-full h-full object-cover" />
+                          </div>
+                          <div className="flex-1 truncate">
+                            <h4 className="text-xs font-semibold text-gray-800 group-hover:text-amber-600 truncate">{pj.title}</h4>
+                            <span className="text-[10px] text-gray-400 truncate block">{pj.tag || pj.address}</span>
+                          </div>
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+
+                  {/* No suggestions */}
+                  {suggestions.products.length === 0 && suggestions.articles.length === 0 && suggestions.projects.length === 0 && (
+                    <div className="p-4 text-center text-xs text-gray-500">
+                      Không tìm thấy gợi ý nào. Nhấn Enter để xem kết quả tìm kiếm đầy đủ.
+                    </div>
+                  )}
+
+                  {/* View All Button */}
+                  <button
+                    type="button"
+                    onClick={handleSearchSubmit}
+                    className="w-full p-2.5 bg-gray-50 hover:bg-red-50 text-[#c8102e] text-xs font-bold text-center block transition-colors border-t border-gray-100 cursor-pointer"
+                  >
+                    Xem tất cả kết quả cho &quot;{searchQuery}&quot; &rarr;
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Right Info & Actions */}
@@ -178,17 +365,19 @@ export default function Header({ siteInfo = defaultSiteInfo, categories = [] }: 
         {/* Mobile Search Bar - Mobile View Only */}
         <div className="w-full md:hidden pt-2">
           <form
-            onSubmit={(e) => e.preventDefault()}
+            onSubmit={handleSearchSubmit}
             className="flex items-center border-2 border-[#c8102e] rounded-lg overflow-hidden bg-white shadow-inner"
           >
             <input
               type="text"
               placeholder="Tìm xích đu, bập bênh, thú nhún..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-3 py-1.5 text-xs focus:outline-none text-gray-700"
             />
             <button
               type="submit"
-              className="bg-[#c8102e] text-white px-3 py-1.5 flex items-center justify-center font-medium hover:bg-[#a00c24] transition-colors text-xs"
+              className="bg-[#c8102e] text-white px-3 py-1.5 flex items-center justify-center font-medium hover:bg-[#a00c24] transition-colors text-xs cursor-pointer"
             >
               <Search className="w-4 h-4" />
             </button>
